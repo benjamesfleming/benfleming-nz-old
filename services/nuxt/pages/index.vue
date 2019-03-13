@@ -1,38 +1,40 @@
 <template>
-  <main v-reverse-order>
+  <v-app>
+    <main v-reverse-order>
 
-    <!-- Page Header -->
-    <header v-angle="clipAngle">
-      <v-layout class="header--content-wrapper">
-        <v-img src="~/assets/header-img.jpg" position="center 25%"></v-img>
-        <v-flex class="header--content xs12 sm8 py-5">
-          <h2 class="display-3 font-weight-bold white--text">I'm Ben Fleming...</h2>
-          <h2 class="display-1 font-weight-bold white--text">Web &amp; Software Developer</h2>
-        </v-flex>
-        <v-flex class="header--img-wrapper xs4 hidden-xs-only">
-          <v-img src="~/assets/header-img-cut.png" aspect-ratio="0.5625"></v-img>
-        </v-flex>
-      </v-layout>
-    </header>
+      <!-- Page Header -->
+      <header v-angle="clipAngle">
+        <v-layout class="header--content-wrapper">
+          <v-img src="~/assets/header-img.jpg" position="center 25%"></v-img>
+          <v-flex class="header--content xs12 sm8 py-5">
+            <h2 class="display-3 font-weight-bold white--text">I'm Ben Fleming...</h2>
+            <h2 class="display-1 font-weight-bold white--text">Web &amp; Software Developer</h2>
+          </v-flex>
+          <v-flex class="header--img-wrapper xs4 hidden-xs-only">
+            <v-img src="~/assets/header-img-cut.png" aspect-ratio="0.5625"></v-img>
+          </v-flex>
+        </v-layout>
+      </header>
 
-    <!-- About Me Section -->
-    <v-divider v-granim="gradients"></v-divider>
-    <v-container fluid style="max-width: 1024px;">
-      <section class="about-me">
-        <h2 class="display-3 font-weight-bold black--text">About Me</h2>
-        <div class="icons">
-          <v-tooltip v-for="({name, icon}, idx) in allProficiencies" :key="idx" bottom>
-            <template slot="activator">
-              <img :src="icon"/>
-            </template>
-            <span>{{ name }}</span>
-          </v-tooltip>
-        </div>
-        <p v-html="about_me"></p>
-      </section>
-    </v-container>
+      <!-- About Me Section -->
+      <v-divider v-granim="gradients"></v-divider>
+      <v-container fluid style="max-width: 1024px;">
+        <section class="about-me">
+          <h2 class="display-3 font-weight-bold black--text">About Me</h2>
+          <div class="icons">
+            <v-tooltip v-for="({name, icon}, idx) in allProficiencies" :key="idx" bottom>
+              <template slot="activator">
+                <img :src="icon"/>
+              </template>
+              <span>{{ name }}</span>
+            </v-tooltip>
+          </div>
+          <div class="about-me--content-wrapper" v-html="about_me"></div>
+        </section>
+      </v-container>
 
-  </main>
+    </main>
+  </v-app>
 </template>
 
 <script>
@@ -124,7 +126,7 @@ header
   flex-direction: column
   align-items: center
   justify-content: center
-  p
+  .about-me--content-wrapper
     font-size: 32px
     strong
       padding: 0 5px
