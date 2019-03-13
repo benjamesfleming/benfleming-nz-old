@@ -5,13 +5,13 @@
       <!-- Page Header -->
       <header class="header" v-angle="5.75">
         <v-layout class="header--content-wrapper">
-          <v-img src="~/assets/header-img.jpg" position="center 25%"></v-img>
+          <v-img src="~/assets/images/header--bg-img.jpg" position="center 25%"></v-img>
           <v-flex class="header--content xs12 sm8 py-5">
             <h2 class="display-3 font-weight-bold white--text">I'm Ben Fleming...</h2>
             <h2 class="display-1 font-weight-bold white--text">Web &amp; Software Developer</h2>
           </v-flex>
           <v-flex class="header--img-wrapper xs4 hidden-xs-only">
-            <v-img src="~/assets/header-img-cut.png" aspect-ratio="0.5625"></v-img>
+            <v-img src="~/assets/images/header--fg-img.png" aspect-ratio="0.5625"></v-img>
           </v-flex>
         </v-layout>
       </header>
