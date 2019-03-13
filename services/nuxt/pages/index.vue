@@ -82,12 +82,13 @@ export default {
    * Async Data (NUXT)
    * get the api data while on the server, and render the inital html
    */
-  async asyncData (ctx) {
-    const { data: { data } } = await ctx.$axios.get(
-      `https://directus.benfleming.io/_/items/homepage/1`
-    )
-    data.about_me = new mkdn().render(data.about_me);
-    return { ...data }
+  asyncData ({ $axios }) {
+    return $axios.$get(`/_/items/homepage/1`)
+      .then(res => res.data)
+      .then(data => {
+        const about_me = new mkdn().render(data.about_me || "");
+        return { ...data, about_me };
+      });
   },
 };
 </script>
