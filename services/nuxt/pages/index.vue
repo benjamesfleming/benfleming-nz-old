@@ -120,6 +120,7 @@ $img-blur = 15px
   .header--content-wrapper
     background-size: 0
     z-index: 0
+    min-height: calc(100vh - 14px)
     > .v-image
       position: absolute
       top: -1*$img-blur
