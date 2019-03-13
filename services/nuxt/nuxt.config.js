@@ -30,7 +30,10 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { 
+    color: '#fff',
+    height: '5px'
+  },
 
   /*
   ** Global CSS
@@ -44,7 +47,6 @@ module.exports = {
   */
   plugins: [
     '~/plugins/vuetify',
-    '~/plugins/api',
     '~/plugins/directives/index'
   ],
 
