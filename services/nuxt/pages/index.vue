@@ -3,7 +3,7 @@
     <main v-reverse-order>
 
       <!-- Page Header -->
-      <header v-angle="clipAngle">
+      <header class="header" v-angle="5.75">
         <v-layout class="header--content-wrapper">
           <v-img src="~/assets/header-img.jpg" position="center 25%"></v-img>
           <v-flex class="header--content xs12 sm8 py-5">
@@ -16,23 +16,59 @@
         </v-layout>
       </header>
 
-      <!-- About Me Section -->
+
       <v-divider v-granim="gradients"></v-divider>
       <v-container fluid style="max-width: 1024px;">
-        <section class="about-me">
-          <h2 class="display-3 font-weight-bold black--text">About Me</h2>
-          <div class="icons">
-            <v-tooltip v-for="({name, icon}, idx) in allProficiencies" :key="idx" bottom>
+
+        <!-- About Me Section -->
+        <section class="section about-me">
+          <h2 class="section--heading display-3 font-weight-bold black--text">About Me</h2>
+          <div class="about-me--icon-list">
+            <v-tooltip bottom>
               <template slot="activator">
-                <img :src="icon"/>
+                <img src="~/assets/icons/csharp.svg"/>
               </template>
-              <span>{{ name }}</span>
+              <span>C-Sharp</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template slot="activator">
+                <img src="~/assets/icons/nodejs.svg"/>
+              </template>
+              <span>Node-JS</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template slot="activator">
+                <img src="~/assets/icons/javascript.svg"/>
+              </template>
+              <span>Javascript</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template slot="activator">
+                <img src="~/assets/icons/aws.svg"/>
+              </template>
+              <span>Amazon-Web-Services</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template slot="activator">
+                <img src="~/assets/icons/reactjs.svg"/>
+              </template>
+              <span>React-JS</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template slot="activator">
+                <img src="~/assets/icons/vuejs.svg"/>
+              </template>
+              <span>Vue-JS</span>
             </v-tooltip>
           </div>
-          <div class="about-me--content-wrapper" v-html="about_me"></div>
+          <div class="section--content-wrapper" v-html="about_me"></div>
+        </section>
+
+        <!-- My Project Section -->
+        <section class="section my-projects">
+          <h2 class="section--heading display-3 font-weight-bold black--text">My Projects</h2>
         </section>
       </v-container>
-
     </main>
   </v-app>
 </template>
@@ -40,26 +76,12 @@
 <script>
 import mkdn from "markdown-it";
 
-import CSharpIcon from "~/assets/icons/csharp.svg";
-import NodeJSIcon from "~/assets/icons/nodejs.svg";
-import JSIcon from "~/assets/icons/javascript.svg";
-import AWSIcon from "~/assets/icons/aws.svg";
-
 export default {
-  data () {
-    return {
-      gradients: [["#834D9B", "#D04ED6"], ["#1CD8D2", "#93EDC7"]],
-      clipAngle: 5.75,
-      languages: [
-        {name: "C#", icon: CSharpIcon},
-        {name: "NodeJS", icon: NodeJSIcon},
-        {name: "Javascript", icon: JSIcon},
-      ],
-      skills: [
-        {name: "AWS", icon: AWSIcon}
-      ],
-    }
-  },
+
+  /**
+   * Async Data (NUXT)
+   * get the api data while on the server, and render the inital html
+   */
   async asyncData (ctx) {
     const { data: { data } } = await ctx.$axios.get(
       `https://directus.benfleming.io/_/items/homepage/1`
@@ -67,24 +89,18 @@ export default {
     data.about_me = new mkdn().render(data.about_me);
     return { ...data }
   },
-  computed: {
-    allProficiencies() { 
-      return [...this.languages, ...this.skills] 
-    },
-  }
 };
 </script>
 
 <style lang="stylus" scoped>
 $img-blur = 15px
-$keyframe-name = pulse
 
-@keyframes {$keyframe-name}
+@keyframes header--hue-rotate
   for i in 0..10
     {10% * i}
       filter: grayscale(75%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
 
-header
+.header
   width: 100%
   position: relative
   overflow: hidden
@@ -99,7 +115,7 @@ header
       left: -1*$img-blur
       width: "calc(100% + (%s * 2))" % ($img-blur)
       height: "calc(100% + (%s * 2))" % ($img-blur)
-      animation: $keyframe-name 15s infinite
+      animation: header--hue-rotate 15s infinite
     .header--content
       display: flex
       flex-direction: column
@@ -117,20 +133,35 @@ header
         width: 100%
         margin-top: -100px
         margin-bottom: -100px
-.home
-  background: linear-gradient(to bottom right, #c6ffdd, #fbd786, #f7797d)
-  width: 100vw
-  height: 100vh
-.about-me
+
+.section
   display: flex
   flex-direction: column
   align-items: center
   justify-content: center
-  .about-me--content-wrapper
+  .section--content-wrapper
     font-size: 32px
     strong
       padding: 0 5px
-  .icons
+  .section--heading
+    letter-spacing: 0.1em !important
+    filter: drop-shadow(3px 3px 4px #aaaaaa)
+    display: inline
+    padding: 10px
+    color: #222 !important
+    position: relative
+    &::before
+      content: ""
+      position: absolute
+      bottom: 0
+      left: 5px
+      right: 5px
+      height: 10px
+      background-color: rgba(#222222, 0.2)
+      transform: translate(0, -22px)
+
+.about-me
+  .about-me--icon-list
     display: flex
     padding: 30px 0px
     span
@@ -148,20 +179,4 @@ header
           right: -27.5px
     img
       width: 64px
-  h2
-    letter-spacing: 0.1em !important
-    filter: drop-shadow(3px 3px 4px #aaaaaa)
-    display: inline
-    padding: 10px
-    color: #222 !important
-    position: relative
-    &::before
-      content: ""
-      position: absolute
-      bottom: 0
-      left: 5px
-      right: 5px
-      height: 10px
-      background-color: rgba(#222222, 0.2)
-      transform: translate(0, -22px)
 </style>
