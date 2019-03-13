@@ -79,6 +79,16 @@ import mkdn from "markdown-it";
 export default {
 
   /**
+   * Page Head Options
+   * set all the nessary <head> options
+   */
+  head () {
+    return {
+      titleTemplate: `home %s`
+    }
+  },
+
+  /**
    * Async Data (NUXT)
    * get the api data while on the server, and render the inital html
    */
