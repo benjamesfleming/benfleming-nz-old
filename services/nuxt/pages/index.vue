@@ -17,7 +17,7 @@
       </header>
 
 
-      <v-divider v-granim="gradients"></v-divider>
+      <v-divider class="header--divider" v-granim="gradients"></v-divider>
       <v-container fluid style="max-width: 1024px;">
 
         <!-- About Me Section -->
@@ -110,6 +110,17 @@ $img-blur = 15px
   for i in 0..10
     {10% * i}
       filter: grayscale(75%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
+
+.header--divider::after
+  content: "Continue Down To Learn More"
+  font-size: 24px
+  margin-top: -50px
+  width: 100%
+  text-align: center
+  position: absolute
+  color: #222 !important
+  letter-spacing: 0.1em !important
+  filter: drop-shadow(3px 3px 4px #aaaaaa)
 
 .header
   width: 100%
