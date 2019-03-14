@@ -1,3 +1,3 @@
 #!/bin/bash
 npm install
-nuxt serve
+npm run build
