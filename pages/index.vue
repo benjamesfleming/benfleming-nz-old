@@ -93,7 +93,7 @@ export default {
    * get the api data while on the server, and render the inital html
    */
   asyncData ({ $axios }) {
-    return $axios.$get(`/_/items/homepage/1`)
+    return $axios.$get(`/_/items/home_page/1`)
       .then(res => res.data)
       .then(data => {
         const about_me = new mkdn().render(data.about_me || "");
