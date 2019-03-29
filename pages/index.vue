@@ -16,7 +16,6 @@
         </v-layout>
       </header>
 
-
       <v-divider class="header--divider" v-granim="gradients"></v-divider>
       <v-container fluid style="max-width: 1024px;">
 
@@ -24,41 +23,11 @@
         <section class="section about-me">
           <h2 class="section--heading display-3 font-weight-bold black--text">About Me</h2>
           <div class="about-me--icon-list">
-            <v-tooltip bottom>
+            <v-tooltip v-for="(i, idx) in icons" :key="idx" bottom>
               <template slot="activator">
-                <img src="~/assets/icons/csharp.svg"/>
+                <img :src="require(`~/assets/icons/${i}.svg`)"/>
               </template>
-              <span>C-Sharp</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-              <template slot="activator">
-                <img src="~/assets/icons/nodejs.svg"/>
-              </template>
-              <span>Node-JS</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-              <template slot="activator">
-                <img src="~/assets/icons/javascript.svg"/>
-              </template>
-              <span>Javascript</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-              <template slot="activator">
-                <img src="~/assets/icons/aws.svg"/>
-              </template>
-              <span>Amazon-Web-Services</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-              <template slot="activator">
-                <img src="~/assets/icons/reactjs.svg"/>
-              </template>
-              <span>React-JS</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-              <template slot="activator">
-                <img src="~/assets/icons/vuejs.svg"/>
-              </template>
-              <span>Vue-JS</span>
+              <span>{{ i }}</span>
             </v-tooltip>
           </div>
           <div class="section--content-wrapper" v-html="about_me"></div>
@@ -74,8 +43,6 @@
 </template>
 
 <script>
-import mkdn from "markdown-it";
-
 export default {
 
   /**
@@ -95,10 +62,6 @@ export default {
   asyncData ({ $axios }) {
     return $axios.$get(`/_/items/home_page/1`)
       .then(res => res.data)
-      .then(data => {
-        const about_me = new mkdn().render(data.about_me || "");
-        return { ...data, about_me };
-      });
   },
 };
 </script>
