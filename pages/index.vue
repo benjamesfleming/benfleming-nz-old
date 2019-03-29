@@ -3,7 +3,7 @@
     <main v-reverse-order>
 
       <!-- Page Header -->
-      <header class="header" v-angle="5.75">
+      <header class="header" v-angle="3">
         <v-layout class="header--content-wrapper">
           <v-img src="~/assets/images/header--bg-img.jpg" position="center 25%"></v-img>
           <v-flex class="header--content xs12 sm8 py-5">
@@ -77,7 +77,7 @@ $img-blur = 15px
 .header--divider::after
   content: "Continue Down To Learn More"
   font-size: 24px
-  margin-top: -50px
+  margin-top: -45px
   width: 100%
   text-align: center
   position: absolute
