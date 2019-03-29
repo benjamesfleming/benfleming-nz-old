@@ -16,7 +16,7 @@
         </v-layout>
       </header>
 
-      <v-divider class="header--divider" v-granim="gradients"></v-divider>
+      <v-divider class="header--divider" v-granim="[['#834D9B', '#D04ED6'], ['#1CD8D2', '#93EDC7']]"></v-divider>
       <v-container fluid style="max-width: 1024px;">
 
         <!-- About Me Section -->
