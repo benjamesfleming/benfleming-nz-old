@@ -107,8 +107,6 @@ module.exports = {
           }
         ]
       })
-
-      console.log(config.module.rules.map(rule => rule.test))
     }
   }
 }
