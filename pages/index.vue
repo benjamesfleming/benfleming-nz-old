@@ -16,7 +16,7 @@
         </v-layout>
       </header>
 
-      <v-divider class="header--divider" v-granim="[['#834D9B', '#D04ED6'], ['#1CD8D2', '#93EDC7']]"></v-divider>
+      <v-divider class="header--divider" :style="`--content-opacity: ${scrollTop}`"></v-divider>
       <v-container fluid style="max-width: 1024px;">
 
         <!-- About Me Section -->
@@ -30,7 +30,7 @@
               <span>{{ i }}</span>
             </v-tooltip>
           </div>
-          <div class="section--content-wrapper" v-html="about_me"></div>
+          <div class="section--content-wrapper" v-html="content.about_me"></div>
         </section>
 
         <!-- My Project Section -->
@@ -62,17 +62,62 @@ export default {
   asyncData ({ $axios }) {
     return $axios.$get(`/_/items/home_page/1`)
       .then(res => res.data)
+  /**
+   * Page Data
+   * inital page starting data
+   */
+  data () {
+    return {
+      scrollTop: 0,
+      content: {
+        icons: [],
+        about_me: "",
+      },
+    };
   },
+
+  /**
+   * Page Methods
+   * all the pages methods needed for dynamic content
+   */
+  methods: {
+    handleScroll () {
+      this.scrollTop = (80 - window.scrollY) / 80;
+    }
+  },
+
+  /**
+   * On Page Created
+   * this method runs when the page is created
+   */
+  created () {
+    if (!process.client) 
+      return;
+    
+    this.handleScroll();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+
+  /**
+   * On Page Destory
+   * this method cleans up when the page is destoryed
+   */
+  destroyed () {
+    if (!process.client)
+      return;
+    
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 };
 </script>
 
 <style lang="stylus" scoped>
-$img-blur = 15px
+$img-blur = 20px
 
 @keyframes header--hue-rotate
   for i in 0..10
     {10% * i}
-      filter: grayscale(75%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
+      filter: grayscale(85%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
 
 .header--divider::after
   content: "Continue Down To Learn More"
@@ -84,6 +129,7 @@ $img-blur = 15px
   color: #222 !important
   letter-spacing: 0.1em !important
   filter: drop-shadow(3px 3px 4px #aaaaaa)
+  opacity: var(--content-opacity)
 
 .header
   width: 100%
