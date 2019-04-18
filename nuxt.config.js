@@ -91,7 +91,10 @@ module.exports = {
 
       imgLoader.test = /\.(png|jpe?g|gif|webp)(\?.*)?$/i
       imgLoader.use = [
-        'vuetify-loader/progressive-loader',
+        {
+          loader: 'vuetify-loader/progressive-loader',
+          options: { graphicsMagick: true }
+        },
         {
           loader: 'url-loader',
           options: { limit: 8000 }
