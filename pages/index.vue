@@ -23,11 +23,11 @@
         <section class="section about-me">
           <h2 class="section--heading display-3 font-weight-bold black--text">About Me</h2>
           <div class="about-me--icon-list">
-            <v-tooltip v-for="(i, idx) in icons" :key="idx" bottom>
+            <v-tooltip v-for="(i, idx) in content.icons" :key="idx" bottom>
               <template slot="activator">
-                <img :src="require(`~/assets/icons/${i}.svg`)"/>
+                <img :src="i.directus_files_id.data.full_url"/>
               </template>
-              <span>{{ i }}</span>
+              <span>{{ i.directus_files_id.title }}</span>
             </v-tooltip>
           </div>
           <div class="section--content-wrapper" v-html="content.about_me"></div>
@@ -60,8 +60,13 @@ export default {
    * get the api data while on the server, and render the inital html
    */
   asyncData ({ $axios }) {
-    return $axios.$get(`/_/items/home_page/1`)
+    return $axios.$get(`/_/items/home_page/1?fields=*,icons.*.*`)
       .then(res => res.data)
+      .then(content => {
+        return { content }; 
+      });
+  },
+
   /**
    * Page Data
    * inital page starting data
