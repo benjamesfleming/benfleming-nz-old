@@ -22,14 +22,7 @@
         <!-- About Me Section -->
         <section class="section about-me">
           <h2 class="section--heading display-3 font-weight-bold black--text">About Me</h2>
-          <div class="about-me--icon-list">
-            <v-tooltip v-for="(i, idx) in content.icons" :key="idx" bottom>
-              <template slot="activator">
-                <img :src="i.directus_files_id.data.full_url"/>
-              </template>
-              <span>{{ i.directus_files_id.title }}</span>
-            </v-tooltip>
-          </div>
+          <v-icons :icons="content.icons"/>
           <div class="section--content-wrapper" v-html="content.about_me"></div>
         </section>
 
@@ -46,6 +39,8 @@
 </template>
 
 <script>
+import Icons from "~/components/icons.vue";
+
 export default {
 
   /**
@@ -74,6 +69,7 @@ export default {
    * Page Data
    * inital page starting data
    */
+  components: { "v-icons": Icons },
   data () {
     return {
       scrollTop: 0,
@@ -200,24 +196,4 @@ $img-blur = 20px
       height: 10px
       background-color: rgba(#222222, 0.2)
       transform: translate(0, -22px)
-
-.about-me
-  .about-me--icon-list
-    display: flex
-    padding: 30px 0px
-    span
-      position: relative
-      filter: drop-shadow(3px 3px 4px #aaaaaa)
-      margin: 0 25px
-      &:not(:last-child)
-        &::after
-          content: ""
-          position: absolute
-          background: rgba(#222222, 0.8)
-          width: 5px
-          top: 7.5px
-          bottom: 7.5px
-          right: -27.5px
-    img
-      width: 64px
 </style>
