@@ -36,6 +36,9 @@
         <!-- My Project Section -->
         <section class="section my-projects">
           <h2 class="section--heading display-3 font-weight-bold black--text">My Projects</h2>
+          <ul>
+            <li v-for="(p, idx) in content.projects" :key="idx">{{ p.title }}</li>
+          </ul>
         </section>
       </v-container>
     </main>
@@ -59,12 +62,12 @@ export default {
    * Async Data (NUXT)
    * get the api data while on the server, and render the inital html
    */
-  asyncData ({ $axios }) {
-    return $axios.$get(`/_/items/home_page/1?fields=*,icons.*.*`)
-      .then(res => res.data)
-      .then(content => {
-        return { content }; 
-      });
+  async asyncData ({ $axios }) {
+    const { data } = await $axios.$get(`/_/items/home/1?fields=*,icons.directus_files_id.*`);
+    const { data: projects } = await $axios.$get(`/_/items/projects?fields=*,icons.directus_files_id.*`);
+    return {
+      content: { ...data, projects }
+    };
   },
 
   /**
@@ -77,6 +80,7 @@ export default {
       content: {
         icons: [],
         about_me: "",
+        projects: []
       },
     };
   },
