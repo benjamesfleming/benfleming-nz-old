@@ -29,9 +29,33 @@
         <!-- My Project Section -->
         <section class="section my-projects">
           <h2 class="section--heading display-3 font-weight-bold black--text">My Projects</h2>
-          <ul>
-            <li v-for="(p, idx) in content.projects" :key="idx">{{ p.title }}</li>
-          </ul>
+          <div class="my-projects--grid">
+            <v-card v-for="(p, idx) in content.projects" :key="idx">
+              <v-img
+                class="white--text"
+                height="200px"
+                :src="p.image || ''"
+              >
+                <v-container fill-height fluid>
+                  <v-layout fill-height>
+                    <v-flex xs12 align-end flexbox>
+                      <span class="headline">{{ p.title }}</span>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-img>
+              <v-card-title>
+                <div>
+                  <span class="grey--text">{{ p.tagline }}</span><br>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-icon>open_in_new</v-icon>
+                <v-spacer></v-spacer>
+                <v-icons :icons="p.icons" scale="0.4"/>
+              </v-card-actions>
+            </v-card>
+          </div>
         </section>
       </v-container>
     </main>
@@ -177,6 +201,7 @@ $img-blur = 20px
   align-items: center
   justify-content: center
   .section--content-wrapper
+    width: 100%
     font-size: 32px
     strong
       padding: 0 5px
@@ -196,4 +221,11 @@ $img-blur = 20px
       height: 10px
       background-color: rgba(#222222, 0.2)
       transform: translate(0, -22px)
+  
+.my-projects
+  .my-projects--grid
+    width: 100%
+    display: grid
+    grid-gap: 10px
+    grid-template-columns: repeat(3, 1fr)
 </style>
