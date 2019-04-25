@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  props: ["icons", "scale"],
+  props: { icons: Array, scale: Number },
 }
 </script>
 
