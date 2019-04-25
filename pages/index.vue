@@ -3,14 +3,18 @@
     <main v-reverse-order>
 
       <!-- Page Header -->
-      <header class="header" v-angle="3">
+      <header class="header" v-angle="headerAngle">
         <v-layout class="header--content-wrapper">
           <v-img src="~/assets/images/header--bg-img.jpg" position="center 25%"></v-img>
-          <v-flex class="header--content xs12 sm8 py-5">
-            <h2 class="display-3 font-weight-bold white--text">I'm Ben Fleming...</h2>
-            <h2 class="display-1 font-weight-bold white--text">Web &amp; Software Developer</h2>
+          <v-flex class="header--content sm12 lg8 py-5">
+            <h2 class="header--content-title font-weight-bold white--text">I'm Ben Fleming...</h2>
+            <h2 class="header--content-tagline font-weight-bold white--text">Web &amp; Software Developer</h2>
+            <div class="header--content-icons">
+              <a href="https://github.com/benjamesfleming" target="_blank"><img src="~/assets/icons/github.svg"/></a>
+              <a href="mailto:ben@benfleming.io" target="_blank"><img src="~/assets/icons/envelope.svg"/></a>
+            </div>
           </v-flex>
-          <v-flex class="header--img-wrapper xs4 hidden-xs-only">
+          <v-flex class="header--img-wrapper lg4 hidden-md-and-down">
             <v-img src="~/assets/images/header--fg-img.png" aspect-ratio="0.5625"></v-img>
           </v-flex>
         </v-layout>
@@ -21,49 +25,38 @@
 
         <!-- About Me Section -->
         <section class="section about-me">
-          <h2 class="section--heading display-3 font-weight-bold black--text">About Me</h2>
-          <v-icons :icons="content.icons"/>
+          <h2 class="section--heading font-weight-bold black--text">About Me</h2>
+          <v-icons :icons="content.icons" :scale="iconScale"/>
           <div class="section--content-wrapper" v-html="content.about_me"></div>
         </section>
 
         <!-- My Project Section -->
         <section class="section my-projects">
-          <h2 class="section--heading display-3 font-weight-bold black--text">My Projects</h2>
+          <h2 class="section--heading font-weight-bold black--text">My Projects</h2>
           <div class="my-projects--grid">
-            <v-card v-for="(p, idx) in content.projects" :key="idx">
-              <v-img
-                class="white--text"
-                height="200px"
-                :src="p.image || ''"
-              >
-                <v-container fill-height fluid>
-                  <v-layout fill-height>
-                    <v-flex xs12 align-end flexbox>
-                      <span class="headline">{{ p.title }}</span>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-img>
-              <v-card-title>
-                <div>
-                  <span class="grey--text">{{ p.tagline }}</span><br>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-icon>open_in_new</v-icon>
-                <v-spacer></v-spacer>
-                <v-icons :icons="p.icons" scale="0.4"/>
-              </v-card-actions>
+            <v-project-card 
+              v-for="(project, idx) in content.projects"
+              :value="project" 
+              :key="idx"
+            />
+            <v-card class="my-projects-placeholder hidden-xs-only" elevation="0">
+              <span class="display-3 font-weight-bold">MORE COMING SOON</span>
             </v-card>
           </div>
         </section>
       </v-container>
+
+      <!-- Page Footer  -->
+      <footer class="footer" style="max-width: 1024px;">
+        &copy; Ben Fleming 2019-{{ fullYear }}. All Rights Reserved
+      </footer>
     </main>
   </v-app>
 </template>
 
 <script>
 import Icons from "~/components/icons.vue";
+import ProjectCard from "~/components/project-card.vue";
 
 export default {
 
@@ -83,26 +76,54 @@ export default {
    */
   async asyncData ({ $axios }) {
     const { data } = await $axios.$get(`/_/items/home/1?fields=*,icons.directus_files_id.*`);
-    const { data: projects } = await $axios.$get(`/_/items/projects?fields=*,icons.directus_files_id.*`);
+    const { data: projects } = await $axios.$get(`/_/items/projects?fields=*,icons.directus_files_id.*,image.*`);
     return {
-      content: { ...data, projects }
+      content: { ...data, projects: Array.from(projects).sort((a,b) => a.sort - b.sort) }
     };
   },
+
+  /**
+   * Page Depenencies
+   * all the other componets this page relies on
+   */
+  components: { "v-icons": Icons, "v-project-card": ProjectCard },
 
   /**
    * Page Data
    * inital page starting data
    */
-  components: { "v-icons": Icons },
   data () {
     return {
       scrollTop: 0,
+      date: new Date(),
       content: {
         icons: [],
         about_me: "",
         projects: []
       },
     };
+  },
+
+  /**
+   * Page Computed Date
+   * dynamic data to render on the page
+   */
+  computed: {
+    fullYear () {
+      return this.date.getFullYear();
+    },
+    headerAngle () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 5
+        default  : return 3
+      }
+    },
+    iconScale () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 0.4
+        default  : return 1.0
+      }
+    }
   },
 
   /**
@@ -159,6 +180,13 @@ $img-blur = 20px
   letter-spacing: 0.1em !important
   filter: drop-shadow(3px 3px 4px #aaaaaa)
   opacity: var(--content-opacity)
+  @media screen and (max-width: 1264px)
+    margin-top: -35px
+  @media screen and (max-width: 960px)
+    content: "Continue Down"
+  @media screen and (max-width: 600px)
+    font-size: 16px
+    margin-top: -22px
 
 .header
   width: 100%
@@ -186,14 +214,40 @@ $img-blur = 20px
       text-shadow: 3px 3px 0px rgba(#aaaaaa, 0.5)
       z-index: 1
       transform: scale(1.2)
+      .header--content-title
+        font-size: 56px
+        @media screen and (max-width: 600px)
+          font-size: 20px
+      .header--content-tagline
+        font-size: 32px
+        @media screen and (max-width: 600px)
+          font-size: 16px
+      .header--content-icons
+        margin: 20px 0 0 0
+        a > img
+          width: 48px
+          height: 48px
+          filter: drop-shadow(3px 3px 6px rgba(#aaaaaa, 0.5))
+          @media screen and (max-width: 600px)
+            width: 32px
+            height: 32px
+        a:not(:last-child)
+          margin: 0 10px 0 0
     .header--img-wrapper
       width: 100%
       height: inherit
       overflow: hidden
+      align-self: flex-end
       .v-image
         width: 100%
-        margin-top: -100px
-        margin-bottom: -100px
+        margin: -100px 0
+
+.footer
+  margin: auto
+  padding 0 24px
+  font-size: 20px
+  @media screen and (max-width: 600px)
+    font-size: 14px
 
 .section
   display: flex
@@ -203,6 +257,8 @@ $img-blur = 20px
   .section--content-wrapper
     width: 100%
     font-size: 32px
+    @media screen and (max-width: 600px)
+      font-size: 22px
     strong
       padding: 0 5px
   .section--heading
@@ -212,14 +268,18 @@ $img-blur = 20px
     padding: 10px
     color: #222 !important
     position: relative
+    white-space: nowrap
+    font-size: 56px
+    @media screen and (max-width: 600px)
+      font-size: 36px
     &::before
       content: ""
       position: absolute
-      bottom: 0
+      bottom: 5px
       left: 5px
       right: 5px
       height: 10px
-      background-color: rgba(#222222, 0.2)
+      background-color: rgba(#444, 0.1)
       transform: translate(0, -22px)
   
 .my-projects
@@ -227,5 +287,18 @@ $img-blur = 20px
     width: 100%
     display: grid
     grid-gap: 10px
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: 1fr 1fr 1fr
+    @media screen and (max-width: 960px)
+      grid-template-columns: 1fr 1fr
+    @media screen and (max-width: 600px)
+      grid-template-columns: 1fr
+  .my-projects-placeholder
+    background: none
+    display: flex
+    align-items: center
+    justify-content: center
+    span 
+      text-align: center
+      color: rgba(#444, 0.1)
+      text-shadow: 1px 1px white, -1px -1px rgba(#444, 0.1);
 </style>
