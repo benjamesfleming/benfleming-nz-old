@@ -48,7 +48,13 @@
 
       <!-- Page Footer  -->
       <footer class="footer" style="max-width: 1024px;">
-        &copy; Ben Fleming 2019-{{ fullYear }}. All Rights Reserved
+        <span>&copy; Ben Fleming 2019-{{ fullYear }}.</span>
+        <span>All Rights Reserved</span>
+        <v-spacer></v-spacer>
+        <div class="footer--links">
+          <a href="https://github.com/benjamesfleming" target="_target">Github</a> • 
+          <a href="mailto:ben@benfleming.io" target="_blank">Email</a>
+        </div>
       </footer>
     </main>
   </v-app>
@@ -243,11 +249,19 @@ $img-blur = 20px
         margin: -100px 0
 
 .footer
+  display: flex
   margin: auto
   padding 0 24px
   font-size: 20px
   @media screen and (max-width: 600px)
+    flex-direction: column
     font-size: 14px
+  .footer--links a
+    text-decoration: none
+    &:not(:last-child)
+      margin-right: 5px
+    &:not(:first-child)
+      margin-left: 5px
 
 .section
   display: flex
