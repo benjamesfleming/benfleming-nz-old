@@ -6,6 +6,7 @@
       class="white--text"
       position="center 100%"
       height="200px"
+      :alt="title + ' project showcase'"
       :src="require(`~/assets/${image}`)"
       contain
     ></v-img>

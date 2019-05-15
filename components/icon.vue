@@ -1,7 +1,7 @@
 <template>
   <v-tooltip bottom>
     <template slot="activator">
-      <img :src="src"/>
+      <img alt="" :src="src"/>
     </template>
     <span>{{ alt }}</span>
   </v-tooltip>
