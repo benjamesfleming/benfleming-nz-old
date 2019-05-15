@@ -16,6 +16,12 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
+    link: [
+      { rel: 'preconnect', href: 'https://storage.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://ajax.cloudflare.com' },
+    ]
   },
 
   /*
@@ -45,8 +51,6 @@ module.exports = {
       },
     ]
   },
-
-
 
   /*
   ** Customize the progress-bar color
@@ -124,8 +128,9 @@ module.exports = {
         {
           loader: 'image-webpack-loader',
           options: {
-            webp: {
-              quality: 75
+            pngquant: {
+              quality: '90-100',
+              speed: 1
             }
           }
         }
