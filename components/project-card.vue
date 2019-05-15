@@ -5,7 +5,6 @@
     <v-img
       class="white--text"
       position="center 100%"
-      height="200px"
       :alt="title + ' project showcase'"
       :src="require(`~/assets/images/${slug}@1x.png`)"
       :srcset="
@@ -13,7 +12,6 @@
         require(`~/assets/images/${slug}@2x.png`).src + ' 2x,' +
         require(`~/assets/images/${slug}@3x.png`).src + ' 3x '
       "
-      contain
     ></v-img>
 
     <!-- Card Text / Info -->

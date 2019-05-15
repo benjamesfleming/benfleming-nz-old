@@ -5,7 +5,7 @@
       <!-- Page Header -->
       <header class="header" v-angle="headerAngle">
         <v-layout class="header--content-wrapper">
-          <v-img src="~/assets/images/header--bg-img.jpg" position="center 25%"></v-img>
+          <v-img src="~/assets/images/header--bg-img.jpg"></v-img>
           <v-flex class="header--content sm12 lg8 py-5">
             <h2 class="header--content-title">I'm Ben Fleming...</h2>
             <h2 class="header--content-tagline">Web &amp; Software Developer</h2>
@@ -15,7 +15,7 @@
             </div>
           </v-flex>
           <v-flex class="header--img-wrapper lg4 hidden-md-and-down">
-            <v-img src="~/assets/images/header--fg-img.png" aspect-ratio="0.5625"></v-img>
+            <v-img src="~/assets/images/header--fg-img.png"></v-img>
           </v-flex>
         </v-layout>
       </header>
@@ -223,14 +223,14 @@ $img-blur = 20px
     margin-top -100px
   .header--content-wrapper
     background-size 0
+    background-color #222
     z-index 0
-    min-height calc(100vh - 14px)
+    height calc(100vh - 14px)
     > .v-image
       position absolute
       top -1 * $img-blur
       left -1 * $img-blur
       width "calc(100% + (%s * 2))" % ($img-blur)
-      height "calc(100% + (%s * 2))" % ($img-blur)
       animation header--hue-rotate 15s infinite
     .header--content
       display flex
@@ -240,7 +240,7 @@ $img-blur = 20px
       text-align center
       text-shadow 3px 3px 0px rgba(#aaaaaa, 0.5)
       z-index 1
-      transform scale(1.2)
+      transform scale(1.3)
       .header--content-title
         color white
         font-weight bold
@@ -264,14 +264,6 @@ $img-blur = 20px
             height 32px
         a:not(:last-child)
           margin 0 10px 0 0
-    .header--img-wrapper
-      width 100%
-      height inherit
-      overflow hidden
-      align-self flex-end
-      .v-image
-        width 100%
-        margin -100px 0
 
 .footer
   display flex
