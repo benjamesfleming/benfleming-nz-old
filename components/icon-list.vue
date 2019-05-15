@@ -18,7 +18,6 @@ export default {
 <style lang="stylus" scoped>
 .icon-list
   display: flex
-  margin: 0 0 20px 0
   >>> span
     position: relative
     filter: drop-shadow(3px 3px 4px #aaaaaa)
