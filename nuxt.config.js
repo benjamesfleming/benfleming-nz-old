@@ -1,6 +1,5 @@
 const pkg = require('./package')
 
-
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const { VuetifyProgressiveModule } = require('vuetify-loader')
 
@@ -18,12 +17,9 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      }
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
     ]
   },
 
@@ -43,6 +39,15 @@ module.exports = {
   ],
 
   /*
+  ** Web Fonts to load without render blocking 
+  */
+  webfontloader: {
+    google: {
+      families: ['Roboto:300,400,500,700', 'Material+Icons'] //Loads Lato font with weights 400 and 700
+    }
+  },
+
+  /*
   ** Plugins to load before mounting the App
   */
   plugins: [
@@ -54,17 +59,9 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    'nuxt-webfontloader',
   ],
-  /*
-  ** Axios module configuration
-  */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    baseURL: "https://directus.benfleming.io"
-  },
 
   /*
   ** Build configuration
@@ -98,6 +95,14 @@ module.exports = {
         {
           loader: 'url-loader',
           options: { limit: 8000 }
+        },
+        {
+          loader: 'image-webpack-loader',
+          options: {
+            webp: {
+              quality: 75
+            }
+          }
         }
       ]
 
@@ -109,6 +114,13 @@ module.exports = {
             options: { limit: 8000 }
           }
         ]
+      })
+
+      config.module.rules.push({
+        test: /\.md$/i,
+        use: [
+          { loader: 'gray-matter-loader' }
+        ],
       })
     }
   }

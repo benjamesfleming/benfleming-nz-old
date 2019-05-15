@@ -5,33 +5,43 @@
     <v-img
       class="white--text"
       position="center 100%"
-      height="200px"
-      :src="image"
-      contain
+      :alt="title + ' project showcase'"
+      :src="require(`~/assets/images/${slug}@1x.png`)"
+      :srcset="
+        require(`~/assets/images/${slug}@1x.png`).src + ' 1x,' +
+        require(`~/assets/images/${slug}@2x.png`).src + ' 2x,' +
+        require(`~/assets/images/${slug}@3x.png`).src + ' 3x '
+      "
     ></v-img>
 
     <!-- Card Text / Info -->
     <v-card-title>
-      <div>
-        <span class="grey--text">{{ tagline }}</span><br>
-        <span class="headline">{{ title }}</span>
+      <div class="v-card-title">
+        <span class="v-card-title--tagline">{{ tagline }}</span><br>
+        <span class="v-card-title--title headline">{{ title }}</span>
       </div>
     </v-card-title>
 
     <!-- Card Actions -->
     <v-card-actions v-if="!hideActions">
-      <a v-if="link" :href="link" target="_blank">
+      <a v-if="link" :href="link" target="_blank" rel="noopener" :aria-label="`Learn more about the ${title} project.`">
         <v-icon v-ripple>open_in_new</v-icon>
       </a>
       <v-spacer></v-spacer>
-      <v-icons :icons="icons" scale="0.4"/>
+      <v-icon-list 
+        v-for="(icon, idx) in icons" :key="idx" 
+        scale="0.4"
+      >
+        <v-my-icon :alt="icon" :src="require(`~/assets/devicons/${icon}.svg`)"/>
+      </v-icon-list>
     </v-card-actions>
 
   </v-card>
 </template>
 
 <script>
-import Icons from "~/components/icons.vue";
+import IconList from "~/components/icon-list.vue";
+import Icon from "~/components/icon.vue";
 
 export default {
 
@@ -39,7 +49,10 @@ export default {
    * Component Depenencies
    * all the other componets this one relies on
    */
-  components: { "v-icons": Icons },
+  components: {
+    "v-icon-list": IconList,
+    "v-my-icon": Icon
+  },
 
   /**
    * Component Props
@@ -53,19 +66,22 @@ export default {
    */
   computed: {
     image () { 
-      return (this.value && this.value.image && this.value.image.data && this.value.image.data.full_url) || "";
+      return (this.value && this.value.data && this.value.data.image) || "";
     },
     icons () {
-      return (this.value && this.value.icons) || [];
+      return (this.value && this.value.data && this.value.data.icons) || [];
     },
     title () {
-      return (this.value && this.value.title) || "Untitled";
+      return (this.value && this.value.data && this.value.data.title) || "Untitled";
     },
     tagline () {
-      return (this.value && this.value.tagline) || "No Tagline Defined!";
+      return (this.value && this.value.data && this.value.data.tagline) || "No Tagline Defined!";
+    },
+    slug () {
+      return (this.value && this.value.data && this.value.data.slug) || false;
     },
     link () {
-      return (this.value && this.value.link) || false;
+      return (this.value && this.value.data && this.value.data.link) || false;
     }
   }
 }
@@ -73,6 +89,9 @@ export default {
 
 <style lang="stylus" scoped>
 .project-card
-  >>> .v-image
+  .v-card-title
+    &--tagline
+      color #212121
+  .v-image
     background-color: rgba(#444, 0.1)
 </style>
