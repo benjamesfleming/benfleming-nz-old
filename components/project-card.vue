@@ -20,7 +20,7 @@
 
     <!-- Card Actions -->
     <v-card-actions v-if="!hideActions">
-      <a v-if="link" :href="link" target="_blank">
+      <a v-if="link" :href="link" target="_blank" rel="noopener">
         <v-icon v-ripple>open_in_new</v-icon>
       </a>
       <v-spacer></v-spacer>
