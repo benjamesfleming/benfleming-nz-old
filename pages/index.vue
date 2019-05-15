@@ -10,8 +10,8 @@
             <h2 class="header--content-title font-weight-bold white--text">I'm Ben Fleming...</h2>
             <h2 class="header--content-tagline font-weight-bold white--text">Web &amp; Software Developer</h2>
             <div class="header--content-icons">
-              <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener"><img src="~/assets/icons/github.svg"/></a>
-              <a href="mailto:ben@benfleming.io" target="_blank"><img src="~/assets/icons/envelope.svg"/></a>
+              <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" aria-label="Have a browse of my GitHub."><img src="~/assets/icons/github.svg"/></a>
+              <a href="mailto:ben@benfleming.io" target="_blank" aria-label="Send me an Email."><img src="~/assets/icons/envelope.svg"/></a>
             </div>
           </v-flex>
           <v-flex class="header--img-wrapper lg4 hidden-md-and-down">
