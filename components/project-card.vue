@@ -13,9 +13,9 @@
 
     <!-- Card Text / Info -->
     <v-card-title>
-      <div>
-        <span class="grey--text text--darken-3">{{ tagline }}</span><br>
-        <span class="headline">{{ title }}</span>
+      <div class="v-card-title">
+        <span class="v-card-title--tagline">{{ tagline }}</span><br>
+        <span class="v-card-title--title headline">{{ title }}</span>
       </div>
     </v-card-title>
 
@@ -83,6 +83,9 @@ export default {
 
 <style lang="stylus" scoped>
 .project-card
-  >>> .v-image
+  .v-card-title
+    &--tagline
+      color #212121
+  .v-image
     background-color: rgba(#444, 0.1)
 </style>

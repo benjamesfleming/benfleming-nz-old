@@ -7,8 +7,8 @@
         <v-layout class="header--content-wrapper">
           <v-img src="~/assets/images/header--bg-img.jpg" position="center 25%"></v-img>
           <v-flex class="header--content sm12 lg8 py-5">
-            <h2 class="header--content-title font-weight-bold white--text">I'm Ben Fleming...</h2>
-            <h2 class="header--content-tagline font-weight-bold white--text">Web &amp; Software Developer</h2>
+            <h2 class="header--content-title">I'm Ben Fleming...</h2>
+            <h2 class="header--content-tagline">Web &amp; Software Developer</h2>
             <div class="header--content-icons">
               <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" aria-label="Have a browse of my GitHub."><img alt="github icon" src="~/assets/icons/github.svg"/></a>
               <a href="mailto:ben@benfleming.io" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg"/></a>
@@ -25,7 +25,7 @@
 
         <!-- About Me Section -->
         <section class="section about-me">
-          <h2 class="section--heading font-weight-bold black--text">About Me</h2>
+          <h2 class="section--heading">About Me</h2>
           <v-icon-list :scale="iconScale">
             <v-my-icon alt="Amazon Web Services" :src="require(`~/assets/devicons/amazonwebservices.svg`)"/>
             <v-my-icon alt="C-Sharp" :src="require(`~/assets/devicons/csharp.svg`)"/>
@@ -47,7 +47,7 @@
 
         <!-- My Project Section -->
         <section class="section my-projects">
-          <h2 class="section--heading font-weight-bold black--text">My Projects</h2>
+          <h2 class="section--heading">My Projects</h2>
           <div class="my-projects--grid">
             <v-project-card 
               v-for="(project, idx) in content.projects"
@@ -67,8 +67,8 @@
         <span>All Rights Reserved</span>
         <v-spacer></v-spacer>
         <div class="footer--links">
-          <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" class="blue--text text--darken-4">Github</a> • 
-          <a href="mailto:ben@benfleming.io" target="_blank" class="blue--text text--darken-4">Email</a>
+          <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener">Github</a> • 
+          <a href="mailto:ben@benfleming.io" target="_blank">Email</a>
         </div>
       </footer>
     </main>
@@ -187,12 +187,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-$breakpoint-sm = 600px
-$breakpoint-md = 960px
-$breakpoint-lg = 1264px
+@import '~assets/style/variables.styl'
 
 $img-blur = 20px
-
 
 @keyframes header--hue-rotate
   for i in 0..10
@@ -245,10 +242,14 @@ $img-blur = 20px
       z-index 1
       transform scale(1.2)
       .header--content-title
+        color white
+        font-weight bold
         font-size 56px
         @media screen and (max-width $breakpoint-sm)
           font-size 20px
       .header--content-tagline
+        color white
+        font-weight bold
         font-size 32px
         @media screen and (max-width $breakpoint-sm)
           font-size 16px
@@ -281,6 +282,7 @@ $img-blur = 20px
     flex-direction column
     font-size 14px
   .footer--links a
+    color $link-color
     text-decoration none
     &:not(:last-child)
       margin-right 5px
@@ -308,6 +310,7 @@ $img-blur = 20px
     position relative
     white-space nowrap
     font-size 56px
+    font-weight bold
     @media screen and (max-width $breakpoint-sm)
       font-size 36px
     &::before
@@ -324,7 +327,7 @@ $img-blur = 20px
   .my-projects--grid
     width 100%
     display grid
-    grid-gap 10px
+    gap 10px
     grid-template-columns 1fr 1fr 1fr
     @media screen and (max-width $breakpoint-md)
       grid-template-columns 1fr 1fr
@@ -337,6 +340,6 @@ $img-blur = 20px
     justify-content center
     span 
       text-align center
-      color rgba(#444, 0.2)
-      text-shadow 1px 1px white, -1px -1px rgba(#444, 0.2)
+      color rgba(#444, 0.1)
+      text-shadow 1px 1px white, -1px -1px rgba(#444, 0.1)
 </style>
