@@ -1,6 +1,5 @@
 const pkg = require('./package')
 
-
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const { VuetifyProgressiveModule } = require('vuetify-loader')
 
@@ -20,12 +19,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      }
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
     ]
   },
 
@@ -45,6 +39,15 @@ module.exports = {
   ],
 
   /*
+  ** Web Fonts to load without render blocking 
+  */
+  webfontloader: {
+    google: {
+      families: ['Roboto:300,400,500,700', 'Material+Icons'] //Loads Lato font with weights 400 and 700
+    }
+  },
+
+  /*
   ** Plugins to load before mounting the App
   */
   plugins: [
@@ -57,6 +60,7 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/pwa',
+    'nuxt-webfontloader',
   ],
 
   /*
