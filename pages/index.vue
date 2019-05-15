@@ -187,151 +187,156 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+$breakpoint-sm = 600px
+$breakpoint-md = 960px
+$breakpoint-lg = 1264px
+
 $img-blur = 20px
+
 
 @keyframes header--hue-rotate
   for i in 0..10
     {10% * i}
-      filter: grayscale(85%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
+      filter grayscale(85%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
 
 .header--divider::after
-  content: "Continue Down To Learn More"
-  font-size: 24px
-  margin-top: -45px
-  width: 100%
-  text-align: center
-  position: absolute
-  color: #222 !important
-  letter-spacing: 0.1em !important
-  filter: drop-shadow(3px 3px 4px #aaaaaa)
-  opacity: var(--content-opacity)
-  @media screen and (max-width: 1264px)
-    margin-top: -35px
-  @media screen and (max-width: 960px)
-    content: "Continue Down"
-  @media screen and (max-width: 600px)
-    font-size: 16px
-    margin-top: -22px
+  content "Continue Down To Learn More"
+  font-size 24px
+  margin-top -45px
+  width 100%
+  text-align center
+  position absolute
+  color #222 !important
+  letter-spacing 0.1em !important
+  filter drop-shadow(3px 3px 4px #aaaaaa)
+  opacity var(--content-opacity)
+  @media screen and (max-width $breakpoint-lg)
+    margin-top -35px
+  @media screen and (max-width $breakpoint-md)
+    content "Continue Down"
+  @media screen and (max-width $breakpoint-sm)
+    font-size 16px
+    margin-top -22px
 
 .header
-  width: 100%
-  position: relative
-  overflow: hidden
+  width 100%
+  position relative
+  overflow hidden
   &:not(:first-child)
-    margin-top: -100px
+    margin-top -100px
   .header--content-wrapper
-    background-size: 0
-    z-index: 0
-    min-height: calc(100vh - 14px)
+    background-size 0
+    z-index 0
+    min-height calc(100vh - 14px)
     > .v-image
-      position: absolute
-      top: -1*$img-blur
-      left: -1*$img-blur
-      width: "calc(100% + (%s * 2))" % ($img-blur)
-      height: "calc(100% + (%s * 2))" % ($img-blur)
-      animation: header--hue-rotate 15s infinite
+      position absolute
+      top -1 * $img-blur
+      left -1 * $img-blur
+      width "calc(100% + (%s * 2))" % ($img-blur)
+      height "calc(100% + (%s * 2))" % ($img-blur)
+      animation header--hue-rotate 15s infinite
     .header--content
-      display: flex
-      flex-direction: column
-      align-content: center
-      justify-content: center
-      text-align: center
-      text-shadow: 3px 3px 0px rgba(#aaaaaa, 0.5)
-      z-index: 1
-      transform: scale(1.2)
+      display flex
+      flex-direction column
+      align-content center
+      justify-content center
+      text-align center
+      text-shadow 3px 3px 0px rgba(#aaaaaa, 0.5)
+      z-index 1
+      transform scale(1.2)
       .header--content-title
-        font-size: 56px
-        @media screen and (max-width: 600px)
-          font-size: 20px
+        font-size 56px
+        @media screen and (max-width $breakpoint-sm)
+          font-size 20px
       .header--content-tagline
-        font-size: 32px
-        @media screen and (max-width: 600px)
-          font-size: 16px
+        font-size 32px
+        @media screen and (max-width $breakpoint-sm)
+          font-size 16px
       .header--content-icons
-        margin: 20px 0 0 0
+        margin 20px 0 0 0
         a > img
-          width: 48px
-          height: 48px
-          filter: drop-shadow(3px 3px 6px rgba(#aaaaaa, 0.5))
-          @media screen and (max-width: 600px)
-            width: 32px
-            height: 32px
+          width 48px
+          height 48px
+          filter drop-shadow(3px 3px 6px rgba(#aaaaaa, 0.5))
+          @media screen and (max-width $breakpoint-sm)
+            width 32px
+            height 32px
         a:not(:last-child)
-          margin: 0 10px 0 0
+          margin 0 10px 0 0
     .header--img-wrapper
-      width: 100%
-      height: inherit
-      overflow: hidden
-      align-self: flex-end
+      width 100%
+      height inherit
+      overflow hidden
+      align-self flex-end
       .v-image
-        width: 100%
-        margin: -100px 0
+        width 100%
+        margin -100px 0
 
 .footer
-  display: flex
-  margin: auto
+  display flex
+  margin auto
   padding 0 24px
-  font-size: 20px
-  @media screen and (max-width: 600px)
-    flex-direction: column
-    font-size: 14px
+  font-size 20px
+  @media screen and (max-width $breakpoint-sm)
+    flex-direction column
+    font-size 14px
   .footer--links a
-    text-decoration: none
+    text-decoration none
     &:not(:last-child)
-      margin-right: 5px
+      margin-right 5px
     &:not(:first-child)
-      margin-left: 5px
+      margin-left 5px
 
 .section
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
   .section--content-wrapper
-    width: 100%
-    font-size: 32px
-    @media screen and (max-width: 600px)
-      font-size: 22px
+    width 100%
+    font-size 32px
+    @media screen and (max-width $breakpoint-sm)
+      font-size 22px
     strong
-      padding: 0 5px
+      padding 0 5px
   .section--heading
-    letter-spacing: 0.1em !important
-    filter: drop-shadow(3px 3px 4px #aaaaaa)
-    display: inline
-    padding: 10px
-    color: #222 !important
-    position: relative
-    white-space: nowrap
-    font-size: 56px
-    @media screen and (max-width: 600px)
-      font-size: 36px
+    letter-spacing 0.1em !important
+    filter drop-shadow(3px 3px 4px #aaaaaa)
+    display inline
+    padding 10px
+    color #222 !important
+    position relative
+    white-space nowrap
+    font-size 56px
+    @media screen and (max-width $breakpoint-sm)
+      font-size 36px
     &::before
-      content: ""
-      position: absolute
-      bottom: 5px
-      left: 5px
-      right: 5px
-      height: 10px
-      background-color: rgba(#444, 0.1)
-      transform: translate(0, -22px)
+      content ""
+      position absolute
+      bottom 5px
+      left 5px
+      right 5px
+      height 10px
+      background-color rgba(#444, 0.1)
+      transform translate(0, -22px)
   
 .my-projects
   .my-projects--grid
-    width: 100%
-    display: grid
-    grid-gap: 10px
-    grid-template-columns: 1fr 1fr 1fr
-    @media screen and (max-width: 960px)
-      grid-template-columns: 1fr 1fr
-    @media screen and (max-width: 600px)
-      grid-template-columns: 1fr
+    width 100%
+    display grid
+    grid-gap 10px
+    grid-template-columns 1fr 1fr 1fr
+    @media screen and (max-width $breakpoint-md)
+      grid-template-columns 1fr 1fr
+    @media screen and (max-width $breakpoint-sm)
+      grid-template-columns 1fr
   .my-projects-placeholder
-    background: none
-    display: flex
-    align-items: center
-    justify-content: center
+    background none
+    display flex
+    align-items center
+    justify-content center
     span 
-      text-align: center
-      color: rgba(#444, 0.1)
-      text-shadow: 1px 1px white, -1px -1px rgba(#444, 0.1);
+      text-align center
+      color rgba(#444, 0.2)
+      text-shadow 1px 1px white, -1px -1px rgba(#444, 0.2)
 </style>
