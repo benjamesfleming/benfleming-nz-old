@@ -91,6 +91,14 @@ module.exports = {
         {
           loader: 'url-loader',
           options: { limit: 8000 }
+        },
+        {
+          loader: 'image-webpack-loader',
+          options: {
+            webp: {
+              quality: 75
+            }
+          }
         }
       ]
 
@@ -107,7 +115,7 @@ module.exports = {
       config.module.rules.push({
         test: /\.md$/i,
         use: [
-          { loader: "gray-matter-loader" }
+          { loader: 'gray-matter-loader' }
         ],
       })
     }
