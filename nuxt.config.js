@@ -21,7 +21,6 @@ module.exports = {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      { rel: 'manifest', href: 'site.webmanifest' },
       {
         rel: 'stylesheet',
         href:
@@ -57,17 +56,8 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
   ],
-  /*
-  ** Axios module configuration
-  */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    baseURL: "https://directus.benfleming.io"
-  },
 
   /*
   ** Build configuration
@@ -112,6 +102,13 @@ module.exports = {
             options: { limit: 8000 }
           }
         ]
+      })
+
+      config.module.rules.push({
+        test: /\.md$/i,
+        use: [
+          { loader: "gray-matter-loader" }
+        ],
       })
     }
   }

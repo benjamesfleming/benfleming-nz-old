@@ -11,12 +11,11 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@directus/sdk-js": "^5.2.1",
-    "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "gm": "^1.23.1",
     "granim": "^2.0.0",
+    "gray-matter-loader": "0.0.10",
     "nuxt": "^2.4.0",
     "vue-svg-loader": "^0.12.0",
     "vuetify": "^1.5.5",

@@ -96,8 +96,17 @@ export default {
    * Async Data (NUXT)
    * get the api data while on the server, and render the inital html
    */
-  async asyncData ({ $axios }) {
+  async asyncData () {
+    const asyncImport = async (projectName) =>
+      await import(`~/content/projects/${projectName}.md`);
+
+    const projects = await Promise.all(
+      ["ballance-school"].map(asyncImport)
+    ).then(res => res.map(p => p.default));
     
+    return {
+      content: { projects }
+    };
   },
 
   /**

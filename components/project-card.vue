@@ -6,7 +6,7 @@
       class="white--text"
       position="center 100%"
       height="200px"
-      :src="image"
+      :src="require(`~/assets/${image}`)"
       contain
     ></v-img>
 
@@ -62,19 +62,19 @@ export default {
    */
   computed: {
     image () { 
-      return (this.value && this.value.image && this.value.image.data && this.value.image.data.full_url) || "";
+      return (this.value && this.value.data && this.value.data.image) || "";
     },
     icons () {
-      return (this.value && this.value.icons) || [];
+      return (this.value && this.value.data && this.value.data.icons) || [];
     },
     title () {
-      return (this.value && this.value.title) || "Untitled";
+      return (this.value && this.value.data && this.value.data.title) || "Untitled";
     },
     tagline () {
-      return (this.value && this.value.tagline) || "No Tagline Defined!";
+      return (this.value && this.value.data && this.value.data.tagline) || "No Tagline Defined!";
     },
     link () {
-      return (this.value && this.value.link) || false;
+      return (this.value && this.value.data && this.value.data.link) || false;
     }
   }
 }
