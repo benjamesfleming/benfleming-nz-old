@@ -27,6 +27,28 @@ module.exports = {
   },
 
   /*
+  ** PWA Workbox Options
+  */
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: 'https://fonts.googleapis.com/.*',
+        handler: 'cacheFirst',
+        method: 'GET',
+        strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
+      },
+      {
+        urlPattern: 'https://fonts.gstatic.com/.*',
+        handler: 'cacheFirst',
+        method: 'GET',
+        strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
+      },
+    ]
+  },
+
+
+
+  /*
   ** Customize the progress-bar color
   */
   loading: { 
