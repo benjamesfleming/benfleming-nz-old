@@ -9,6 +9,7 @@ tags:
 icons:
   - git
   - javascript
+  - npm
 ---
 
 Ballance School
