@@ -79,6 +79,7 @@
 import IconList from "~/components/icon-list.vue";
 import Icon from "~/components/icon.vue";
 import ProjectCard from "~/components/project-card.vue";
+import getProjects from "~/content/getProjects.js";
 
 export default {
 
@@ -97,12 +98,7 @@ export default {
    * get the api data while on the server, and render the inital html
    */
   async asyncData () {
-    const asyncImport = async (projectName) =>
-      await import(`~/content/projects/${projectName}.md`);
-
-    const projects = await Promise.all(
-      ["ballance-school"].map(asyncImport)
-    ).then(res => res.map(p => p.default));
+    const projects = await getProjects();
     
     return {
       content: { projects }
@@ -149,8 +145,8 @@ export default {
     },
     iconScale () {
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return 0.4
-        default  : return 1.0
+        case 'xs': return '0.4'
+        default  : return '1.0'
       }
     }
   },
