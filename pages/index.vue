@@ -26,7 +26,14 @@
         <!-- About Me Section -->
         <section class="section about-me">
           <h2 class="section--heading font-weight-bold black--text">About Me</h2>
-          <v-icons :icons="content.icons" :scale="iconScale"/>
+          <v-icon-list :scale="iconScale">
+            <v-my-icon alt="Amazon Web Services" :src="require(`~/assets/devicons/amazonwebservices.svg`)"/>
+            <v-my-icon alt="C-Sharp" :src="require(`~/assets/devicons/csharp.svg`)"/>
+            <v-my-icon alt="Git" :src="require(`~/assets/devicons/git.svg`)"/>
+            <v-my-icon alt="NodeJS" :src="require(`~/assets/devicons/nodejs.svg`)"/>
+            <v-my-icon alt="JavaScript" :src="require(`~/assets/devicons/javascript.svg`)"/>
+            <v-my-icon alt="MySQL" :src="require(`~/assets/devicons/mysql.svg`)"/>
+          </v-icon-list>
           <div class="section--content-wrapper">
             <p>
               Hey there... I'm <strong>Ben Fleming</strong>, a passionate <em>Web &amp; Software</em> developer. 
@@ -69,7 +76,8 @@
 </template>
 
 <script>
-import Icons from "~/components/icons.vue";
+import IconList from "~/components/icon-list.vue";
+import Icon from "~/components/icon.vue";
 import ProjectCard from "~/components/project-card.vue";
 
 export default {
@@ -89,18 +97,18 @@ export default {
    * get the api data while on the server, and render the inital html
    */
   async asyncData ({ $axios }) {
-    const { data } = await $axios.$get(`/_/items/home/1?fields=*,icons.directus_files_id.*`);
-    const { data: projects } = await $axios.$get(`/_/items/projects?fields=*,icons.directus_files_id.*,image.*`);
-    return {
-      content: { ...data, projects: Array.from(projects).sort((a,b) => a.sort - b.sort) }
-    };
+    
   },
 
   /**
    * Page Depenencies
    * all the other componets this page relies on
    */
-  components: { "v-icons": Icons, "v-project-card": ProjectCard },
+  components: { 
+    "v-icon-list": IconList,
+    "v-my-icon": Icon, 
+    "v-project-card": ProjectCard 
+  },
 
   /**
    * Page Data
@@ -111,8 +119,6 @@ export default {
       scrollTop: 0,
       date: new Date(),
       content: {
-        icons: [],
-        about_me: "",
         projects: []
       },
     };

@@ -24,14 +24,20 @@
         <v-icon v-ripple>open_in_new</v-icon>
       </a>
       <v-spacer></v-spacer>
-      <v-icons :icons="icons" scale="0.4"/>
+      <v-icon-list 
+        v-for="(icon, idx) in icons" :key="idx" 
+        scale="0.4"
+      >
+        <v-my-icon :alt="icon" :src="require(`~/assets/devicons/${icon}.svg`)"/>
+      </v-icon-list>
     </v-card-actions>
 
   </v-card>
 </template>
 
 <script>
-import Icons from "~/components/icons.vue";
+import IconList from "~/components/icon-list.vue";
+import Icon from "~/components/icon.vue";
 
 export default {
 
@@ -39,7 +45,10 @@ export default {
    * Component Depenencies
    * all the other componets this one relies on
    */
-  components: { "v-icons": Icons },
+  components: {
+    "v-icon-list": IconList,
+    "v-my-icon": Icon
+  },
 
   /**
    * Component Props
