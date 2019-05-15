@@ -11,7 +11,7 @@ export default {
    * Component Props
    * an array of valid prop names
    */
-  props: { scale: Number },
+  props: { scale: String },
 }
 </script>
 
@@ -20,7 +20,7 @@ export default {
   display: flex
   >>> span
     position: relative
-    filter: drop-shadow(3px 3px 4px #aaaaaa)
+    filter: drop-shadow(1px 1px 2px #aaaaaa)
     margin: 0 calc(var(--icon-list-scale) * 15px) 0
     &:not(:last-child)
       &::after
