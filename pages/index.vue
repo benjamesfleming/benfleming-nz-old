@@ -67,8 +67,8 @@
         <span>All Rights Reserved</span>
         <v-spacer></v-spacer>
         <div class="footer--links">
-          <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener">Github</a> • 
-          <a href="mailto:ben@benfleming.io" target="_blank">Email</a>
+          <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" class="blue--text text--darken-4">Github</a> • 
+          <a href="mailto:ben@benfleming.io" target="_blank" class="blue--text text--darken-4">Email</a>
         </div>
       </footer>
     </main>

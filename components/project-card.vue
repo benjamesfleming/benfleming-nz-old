@@ -14,7 +14,7 @@
     <!-- Card Text / Info -->
     <v-card-title>
       <div>
-        <span class="grey--text">{{ tagline }}</span><br>
+        <span class="grey--text text--darken-3">{{ tagline }}</span><br>
         <span class="headline">{{ title }}</span>
       </div>
     </v-card-title>
