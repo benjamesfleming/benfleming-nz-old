@@ -27,7 +27,15 @@
         <section class="section about-me">
           <h2 class="section--heading font-weight-bold black--text">About Me</h2>
           <v-icons :icons="content.icons" :scale="iconScale"/>
-          <div class="section--content-wrapper" v-html="content.about_me"></div>
+          <div class="section--content-wrapper">
+            <p>
+              Hey there... I'm <strong>Ben Fleming</strong>, a passionate <em>Web &amp; Software</em> developer. 
+              I have a keen interest in all things tech. I have become proficient in languages including <strong>HTML</strong>, <strong>CSS</strong>, <strong>Javascript</strong>, <strong>VueJS</strong> and others.
+            </p>
+            <p>
+              I also like to keep an eye on all areas of <strong><em>I.T.</em></strong>, having played around with <strong>AWS</strong>, <strong>Azure</strong>, <strong>Serverless</strong>, etc.
+            </p>
+          </div>
         </section>
 
         <!-- My Project Section -->
