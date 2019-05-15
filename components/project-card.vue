@@ -7,7 +7,12 @@
       position="center 100%"
       height="200px"
       :alt="title + ' project showcase'"
-      :src="require(`~/assets/${image}`)"
+      :src="require(`~/assets/images/${slug}@1x.png`)"
+      :srcset="
+        require(`~/assets/images/${slug}@1x.png`).src + ' 1x,' +
+        require(`~/assets/images/${slug}@2x.png`).src + ' 2x,' +
+        require(`~/assets/images/${slug}@3x.png`).src + ' 3x '
+      "
       contain
     ></v-img>
 
@@ -73,6 +78,9 @@ export default {
     },
     tagline () {
       return (this.value && this.value.data && this.value.data.tagline) || "No Tagline Defined!";
+    },
+    slug () {
+      return (this.value && this.value.data && this.value.data.slug) || false;
     },
     link () {
       return (this.value && this.value.data && this.value.data.link) || false;
