@@ -1,8 +1,8 @@
 ---
 title: Ballance School
 tagline: Static HTML/CSS Website
-image: images/ballance-school.png
 link: https://ballance.school.nz
+slug: ballance-school
 tags:
   - css
   - html
