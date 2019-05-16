@@ -212,8 +212,7 @@ $img-blur = 20px
   @media screen and (max-width $breakpoint-md)
     content "Continue Down"
   @media screen and (max-width $breakpoint-sm)
-    font-size 16px
-    margin-top -22px
+    content ""
 
 .header
   width 100%
@@ -226,6 +225,8 @@ $img-blur = 20px
     background-color #222
     z-index 0
     height calc(100vh - 14px)
+    @media screen and (max-width $breakpoint-sm)
+      height calc(50vh - 14px)
     > .v-image
       position absolute
       top -1 * $img-blur
@@ -314,6 +315,8 @@ $img-blur = 20px
       height 10px
       background-color rgba(#444, 0.1)
       transform translate(0, -22px)
+      @media screen and (max-width $breakpoint-sm)
+        bottom 0px
   
 .my-projects
   .my-projects--grid
