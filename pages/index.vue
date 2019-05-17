@@ -6,7 +6,7 @@
       <header class="header" v-angle="headerAngle">
         <v-layout class="header--content-wrapper">
           <v-img src="~/assets/images/header--bg-img.jpg"></v-img>
-          <v-flex class="header--content sm12 lg8 py-5">
+          <v-flex class="header--content sm12 lg12 py-5">
             <h2 class="header--content-title">I'm Ben Fleming...</h2>
             <h2 class="header--content-tagline">Web &amp; Software Developer</h2>
             <div class="header--content-icons">
@@ -14,9 +14,11 @@
               <a href="mailto:ben@benfleming.io" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg"/></a>
             </div>
           </v-flex>
+          <!-- Foreground Image
           <v-flex class="header--img-wrapper lg4 hidden-md-and-down">
             <v-img src="~/assets/images/header--fg-img.png"></v-img>
           </v-flex>
+          -->
         </v-layout>
       </header>
 
