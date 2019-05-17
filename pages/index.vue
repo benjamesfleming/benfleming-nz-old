@@ -26,14 +26,17 @@
         <!-- About Me Section -->
         <section class="section about-me">
           <h2 class="section--heading">About Me</h2>
-          <v-icon-list :scale="iconScale">
-            <v-my-icon alt="Amazon Web Services" :src="require(`~/assets/devicons/amazonwebservices.svg`)"/>
-            <v-my-icon alt="C-Sharp" :src="require(`~/assets/devicons/csharp.svg`)"/>
-            <v-my-icon alt="Git" :src="require(`~/assets/devicons/git.svg`)"/>
-            <v-my-icon alt="NodeJS" :src="require(`~/assets/devicons/nodejs.svg`)"/>
-            <v-my-icon alt="JavaScript" :src="require(`~/assets/devicons/javascript.svg`)"/>
-            <v-my-icon alt="MySQL" :src="require(`~/assets/devicons/mysql.svg`)"/>
-          </v-icon-list>
+          <v-animated-icon-list 
+            :interval="3000"
+            :icons="[
+              {alt: `Amazon Web Services` , src: require(`~/assets/devicons/amazonwebservices.svg`)},
+              {alt: `C-Sharp`             , src: require(`~/assets/devicons/csharp.svg`)},
+              {alt: `Git`                 , src: require(`~/assets/devicons/git.svg`)},
+              {alt: `NodeJS`              , src: require(`~/assets/devicons/nodejs.svg`)},
+              {alt: `JavaScript`          , src: require(`~/assets/devicons/javascript.svg`)},
+              {alt: `MySQL`               , src: require(`~/assets/devicons/mysql.svg`)}
+            ]"
+          />
           <div class="section--content-wrapper">
             <p>
               Hey there... I'm <strong>Ben Fleming</strong>, a passionate <em>Web &amp; Software</em> developer. 
@@ -76,6 +79,7 @@
 </template>
 
 <script>
+import AnimatedIconList from "~/components/animated-icon-list.vue";
 import IconList from "~/components/icon-list.vue";
 import Icon from "~/components/icon.vue";
 import ProjectCard from "~/components/project-card.vue";
@@ -112,6 +116,7 @@ export default {
   components: { 
     "v-icon-list": IconList,
     "v-my-icon": Icon, 
+    "v-animated-icon-list": AnimatedIconList,
     "v-project-card": ProjectCard 
   },
 
@@ -290,6 +295,7 @@ $img-blur = 20px
   .section--content-wrapper
     width 100%
     font-size 32px
+    margin-top 20px
     @media screen and (max-width $breakpoint-sm)
       font-size 22px
     strong
