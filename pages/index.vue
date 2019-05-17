@@ -270,6 +270,8 @@ $img-blur = 20px
             height 32px
         a:not(:last-child)
           margin 0 10px 0 0
+    .header--img-wrapper
+      align-self: flex-end
 
 .footer
   display flex
