@@ -201,6 +201,10 @@ $img-blur = 20px
     {10% * i}
       filter grayscale(85%) blur($img-blur) brightness(0.6) hue-rotate(((360/10)*i)deg)
 
+.header--divider
+  @media screen and (max-width $breakpoint-sm)
+    display none
+
 .header--divider::after
   content "Continue Down To Learn More"
   font-size 24px

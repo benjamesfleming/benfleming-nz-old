@@ -1,11 +1,16 @@
 <template>
   <div class="list">
-    <v-animated-icon 
+    
+    <template
       v-for="idx in 5" 
-      :key="idx" 
-      :icons="icons" 
-      :side="showIconMap[idx - 1]"
-    />
+    >
+      <v-animated-icon 
+        :icons="icons" 
+        :side="showIconMap[idx - 1]"
+        :key="idx" 
+      />
+      <div class="divider" :key="idx + .5"></div>
+    </template>
   </div>
 </template>
 
@@ -89,26 +94,30 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.list {
-  display: flex;
+@import '~assets/style/variables.styl'
 
-  > .rotating-cube {
+.list
+  display flex
+  justify-content space-between
+  max-width 75%
+  width 100%
+
+  @media screen and (max-width $breakpoint-md)
+    max-width 85%
+  @media screen and (max-width $breakpoint-sm)
+    max-width 100%
+    
+  > .rotating-cube
     position: relative;
 
-    $margin = 50px;
-    &:not(:last-child) {
-      margin-right: $margin;
+  > .divider
+    margin 18px 0
+    width 6px
+    background-color rgba(#444, 0.1)
 
-      &::after {
-        content: "";
-        position: absolute;
-        top: 12px;
-        bottom: 12px;
-        right: (($margin / 2) + 2) * -1;
-        width: 4px;
-        background-color: #444;
-      }
-    }
-  }
-}
+    @media screen and (max-width $breakpoint-sm)
+      display none
+
+  > .divider:last-child
+    display: none
 </style>
