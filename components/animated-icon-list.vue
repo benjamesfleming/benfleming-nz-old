@@ -42,7 +42,8 @@ export default {
         0, 1, 2, 3, 4
       ],
       hiddenIcon: 5, 
-      lastAnimatedBox: 0
+      lastAnimatedBox: 0,
+      lastAnimatedBoxTime: 0
     };
   },
 
@@ -59,15 +60,21 @@ export default {
       return boxIdx;
     },
 
-    next() {
-      const boxIdx = this.getNextBoxIdx();
-      const newHiddenIcon = this.showIconMap[boxIdx];
+    tick(timestamp) {
+      if (timestamp - this.lastAnimatedBoxTime >= this.interval) {
+        const boxIdx = this.getNextBoxIdx();
+        const newHiddenIcon = this.showIconMap[boxIdx];
 
-      this.$set(
-        this.showIconMap, boxIdx, this.hiddenIcon
-      );
-      this.lastAnimatedBox = boxIdx;
-      this.hiddenIcon = newHiddenIcon;
+        this.$set(
+          this.showIconMap, boxIdx, this.hiddenIcon
+        );
+
+        this.lastAnimatedBox = boxIdx;
+        this.lastAnimatedBoxTime = timestamp;
+        this.hiddenIcon = newHiddenIcon;
+      }
+
+      requestAnimationFrame(this.tick);
     }
   },
 
@@ -76,10 +83,7 @@ export default {
    * a method to run when the component has been mounted
    */
   mounted() {
-    // self calling loop initiator
-    (function tick(i, fn) {
-      setTimeout(() => { fn(); tick(i, fn); }, i);
-    })(this.interval || 3000, this.next);
+    requestAnimationFrame(this.tick);
   }
 }
 </script>
