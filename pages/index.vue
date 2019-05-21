@@ -28,8 +28,10 @@
         <!-- About Me Section -->
         <section class="section about-me">
           <h2 class="section--heading">About Me</h2>
-          <v-animated-icon-list 
+          <v-devicon-list
             :interval="3000"
+            :boxCount="iconCount"
+            :size="iconScale"
             :icons="[
               {alt: `Amazon Web Services` , src: require(`~/assets/devicons/amazonwebservices.svg`)},
               {alt: `C-Sharp`             , src: require(`~/assets/devicons/csharp.svg`)},
@@ -81,9 +83,7 @@
 </template>
 
 <script>
-import AnimatedIconList from "~/components/animated-icon-list.vue";
-import IconList from "~/components/icon-list.vue";
-import Icon from "~/components/icon.vue";
+import DeviconList from "~/components/devicon-list.vue";
 import ProjectCard from "~/components/project-card.vue";
 import getProjects from "~/content/getProjects.js";
 
@@ -115,10 +115,8 @@ export default {
    * Page Depenencies
    * all the other componets this page relies on
    */
-  components: { 
-    "v-icon-list": IconList,
-    "v-my-icon": Icon, 
-    "v-animated-icon-list": AnimatedIconList,
+  components: {
+    "v-devicon-list": DeviconList,
     "v-project-card": ProjectCard 
   },
 
@@ -150,10 +148,16 @@ export default {
         default  : return 3
       }
     },
+    iconCount () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 4
+        default  : return 5
+      }
+    },
     iconScale () {
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return '0.4'
-        default  : return '1.0'
+        case 'xs': return 'md'
+        default  : return 'lg'
       }
     }
   },
@@ -300,7 +304,7 @@ $img-blur = 20px
   flex-direction column
   align-items center
   justify-content center
-  .section--content-wrapper
+  &--content-wrapper
     width 100%
     font-size 32px
     margin-top 20px
@@ -308,7 +312,7 @@ $img-blur = 20px
       font-size 22px
     strong
       padding 0 5px
-  .section--heading
+  &--heading
     letter-spacing 0.1em !important
     filter drop-shadow(3px 3px 4px #aaaaaa)
     display inline
@@ -331,6 +335,9 @@ $img-blur = 20px
       transform translate(0, -22px)
       @media screen and (max-width $breakpoint-sm)
         bottom 0px
+  .v-devicon-list
+    >>> &--icon
+      background #fafafa  
   
 .my-projects
   .my-projects--grid

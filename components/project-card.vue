@@ -28,20 +28,19 @@
         <v-icon v-ripple>open_in_new</v-icon>
       </a>
       <v-spacer></v-spacer>
-      <v-icon-list 
-        v-for="(icon, idx) in icons" :key="idx" 
-        scale="0.4"
-      >
-        <v-my-icon :alt="icon" :src="require(`~/assets/devicons/${icon}.svg`)"/>
-      </v-icon-list>
+      <v-devicon-list
+        :boxCount="3"
+        :interval="-1"
+        :icons="icons"
+        size="sm"
+      />
     </v-card-actions>
 
   </v-card>
 </template>
 
 <script>
-import IconList from "~/components/icon-list.vue";
-import Icon from "~/components/icon.vue";
+import DeviconList from "~/components/devicon-list.vue";
 
 export default {
 
@@ -50,8 +49,7 @@ export default {
    * all the other componets this one relies on
    */
   components: {
-    "v-icon-list": IconList,
-    "v-my-icon": Icon
+    "v-devicon-list": DeviconList,
   },
 
   /**
@@ -69,7 +67,16 @@ export default {
       return (this.value && this.value.data && this.value.data.image) || "";
     },
     icons () {
-      return (this.value && this.value.data && this.value.data.icons) || [];
+      return ((this.value && this.value.data && this.value.data.icons) || [])
+        .map(
+          v => {
+            const _temp = v.split('::');
+            return {
+              alt: _temp[0],
+              src: require(`~/assets/devicons/${_temp[1]}.svg`)
+            };
+          }
+        );
     },
     title () {
       return (this.value && this.value.data && this.value.data.title) || "Untitled";
@@ -83,7 +90,7 @@ export default {
     link () {
       return (this.value && this.value.data && this.value.data.link) || false;
     }
-  }
+  },
 }
 </script>
 
@@ -93,5 +100,9 @@ export default {
     &--tagline
       color #212121
   .v-image
-    background-color: rgba(#444, 0.1)
+    background-color rgba(#444, 0.1)
+  .v-devicon-list
+    width auto
+    >>> .v-devicon-list--icon
+      background white
 </style>
