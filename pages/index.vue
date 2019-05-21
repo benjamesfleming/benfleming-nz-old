@@ -257,6 +257,8 @@ $img-blur = 20px
       text-shadow 3px 3px 0px rgba(#aaaaaa, 0.5)
       z-index 1
       transform scale(1.3)
+      @media screen and (max-width $breakpoint-sm)
+        text-shadow 2px 2px 0px rgba(#aaaaaa, 0.5)
       .header--content-title
         color white
         font-weight bold
