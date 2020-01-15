@@ -11,6 +11,11 @@ jobs:
       
     - name: install nodejs v10
       uses: actions/setup-node@v1
+  
+    - name: install graphicmagick
+      run: |
+        apt-get update
+        apt-get install graphicsmagick
       
     - name: npm install, build
       run: |
