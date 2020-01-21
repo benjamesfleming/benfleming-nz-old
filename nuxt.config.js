@@ -10,7 +10,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: '| benfleming.io',
+    title: '| benfleming.nz',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -28,7 +28,7 @@ module.exports = {
   ** PWA Manifest Options 
   */
   manifest: {
-    name: 'benfleming.io',
+    name: 'benfleming.nz',
     lang: 'en'
   },
 

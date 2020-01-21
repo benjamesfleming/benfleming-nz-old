@@ -11,7 +11,7 @@
             <h2 class="header--content-tagline">Web &amp; Software Developer</h2>
             <div class="header--content-icons">
               <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" aria-label="Have a browse of my GitHub."><img alt="github icon" src="~/assets/icons/github.svg"/></a>
-              <a href="mailto:ben@benfleming.io" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg"/></a>
+              <a href="mailto:ben@benfleming.nz" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg"/></a>
             </div>
           </v-flex>
           <!-- Foreground Image
@@ -75,7 +75,7 @@
         <v-spacer></v-spacer>
         <div class="footer--links">
           <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener">Github</a> • 
-          <a href="mailto:ben@benfleming.io" target="_blank">Email</a>
+          <a href="mailto:ben@benfleming.nz" target="_blank">Email</a>
         </div>
       </footer>
     </main>
