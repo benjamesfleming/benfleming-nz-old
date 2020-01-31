@@ -1,5 +1,6 @@
 export const projects = [
   "ballance-school",
+  "gotasks",
 ];
 
 export default () => {
