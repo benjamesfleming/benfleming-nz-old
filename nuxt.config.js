@@ -109,43 +109,68 @@ module.exports = {
     */
     extend(config, ctx) {
       const vueLoader = config.module.rules.find((rule) => rule.loader === 'vue-loader')
-      const imgLoader = config.module.rules.find((rule) => rule.test.test('.png'))
-
+      const imgLoader = config.module.rules.find(
+        rule =>
+          rule.test.test('.png') &&
+          rule.test.test('.jpg') &&
+          rule.test.test('.gif') &&
+          rule.test.test('.webp') &&
+          rule.test.test('.svg')
+      )
+      
       vueLoader.options.compilerOptions = {
         modules: [VuetifyProgressiveModule]
       }
+      
+      // Disable non-responsive loader for all but gifs
+      imgLoader.test = /\.(gif)$/i
 
-      imgLoader.test = /\.(png|jpe?g|gif|webp)(\?.*)?$/i
-      imgLoader.use = [
-        {
-          loader: 'vuetify-loader/progressive-loader',
-          options: { graphicsMagick: true }
-        },
-        {
-          loader: 'url-loader',
-          options: { limit: 8000 }
-        },
-        {
-          loader: 'image-webpack-loader',
-          options: {
-            pngquant: {
-              quality: '90-100',
-              speed: 1
-            }
-          }
-        }
-      ]
-
+      // Response loader rule
       config.module.rules.push({
-        test: /\.svg$/i,
+        test: /\.(png|jpe?g|webp)$/,
         use: [
-          {
-            loader: 'url-loader',
-            options: { limit: 8000 }
+          { 
+            loader: 'responsive-loader', 
+            options: {
+              name: 'img/[hash:7]-[width].[ext]',
+              placeholder: false,
+              min: 640, max: 1080,
+              quality: 65,
+              steps: 5
+            }
           }
         ]
       })
 
+      // SVG rule for ?inline & ?data
+      config.module.rules.push({
+        test: /\.svg$/,
+        oneOf: [
+          {
+            resourceQuery: /inline/,
+            use: [
+              {
+                loader: 'vue-svg-loader',
+                options: {
+                  svgo: false
+                }
+              }
+            ]
+          },
+          {
+            resourceQuery: /data/,
+            loader: 'url-loader',
+            options: {
+              esModule: false,
+            }
+          },
+          {
+            loader: 'file-loader'
+          }
+        ]
+      })
+
+      // Markdown rule
       config.module.rules.push({
         test: /\.md$/i,
         use: [

@@ -5,13 +5,13 @@
       <!-- Page Header -->
       <header class="header" v-angle="headerAngle">
         <v-layout class="header--content-wrapper">
-          <v-img src="~/assets/images/header--bg-img.jpg"></v-img>
+          <img :srcset="require('~/assets/images/header--bg-img.jpg').srcSet"/>
           <v-flex class="header--content sm12 lg12 py-5">
             <h2 class="header--content-title">I'm Ben Fleming...</h2>
             <h2 class="header--content-tagline">Web &amp; Software Developer</h2>
             <div class="header--content-icons">
-              <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" aria-label="Have a browse of my GitHub."><img alt="github icon" src="~/assets/icons/github.svg"/></a>
-              <a href="mailto:ben@benfleming.nz" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg"/></a>
+              <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener" aria-label="Have a browse of my GitHub."><img alt="github icon" src="~/assets/icons/github.svg?data"/></a>
+              <a href="mailto:ben@benfleming.nz" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg?data"/></a>
             </div>
           </v-flex>
           <!-- Foreground Image
@@ -33,12 +33,12 @@
             :boxCount="iconCount"
             :size="iconScale"
             :icons="[
-              {alt: `Amazon Web Services` , src: require(`~/assets/devicons/amazonwebservices.svg`)},
-              {alt: `C-Sharp`             , src: require(`~/assets/devicons/csharp.svg`)},
-              {alt: `Git`                 , src: require(`~/assets/devicons/git.svg`)},
-              {alt: `NodeJS`              , src: require(`~/assets/devicons/nodejs.svg`)},
-              {alt: `JavaScript`          , src: require(`~/assets/devicons/javascript.svg`)},
-              {alt: `MySQL`               , src: require(`~/assets/devicons/mysql.svg`)}
+              {alt: `Amazon Web Services` , src: require(`~/assets/devicons/amazonwebservices.svg?data`)},
+              {alt: `C-Sharp`             , src: require(`~/assets/devicons/csharp.svg?data`)},
+              {alt: `Git`                 , src: require(`~/assets/devicons/git.svg?data`)},
+              {alt: `NodeJS`              , src: require(`~/assets/devicons/nodejs.svg?data`)},
+              {alt: `JavaScript`          , src: require(`~/assets/devicons/javascript.svg?data`)},
+              {alt: `MySQL`               , src: require(`~/assets/devicons/mysql.svg?data`)}
             ]"
           />
           <div class="section--content-wrapper">
@@ -242,7 +242,7 @@ $img-blur = 20px
     height calc(100vh - 14px)
     @media screen and (max-width $breakpoint-sm)
       height calc(50vh - 14px)
-    > .v-image
+    > img
       position absolute
       top -1 * $img-blur
       left -1 * $img-blur

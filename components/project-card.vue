@@ -2,17 +2,13 @@
   <v-card class="project-card">
 
     <!-- Card Image -->
-    <v-img
-      class="white--text"
-      position="center 100%"
-      :alt="title + ' project showcase'"
-      :src="require(`~/assets/images/${slug}@1x.png`)"
-      :srcset="
-        require(`~/assets/images/${slug}@1x.png`).src + ' 1x,' +
-        require(`~/assets/images/${slug}@2x.png`).src + ' 2x,' +
-        require(`~/assets/images/${slug}@3x.png`).src + ' 3x '
-      "
-    ></v-img>
+    <div class="v-card-img">
+      <img
+        class="white--text"
+        :alt="title + ' project showcase'"
+        :srcset="require(`~/assets/images/${slug}.png`).srcSet"
+      />
+    </div>
 
     <!-- Card Text / Info -->
     <v-card-title>
@@ -73,7 +69,7 @@ export default {
             const _temp = v.split('::');
             return {
               alt: _temp[0],
-              src: require(`~/assets/devicons/${_temp[1]}.svg`)
+              src: require(`~/assets/devicons/${_temp[1]}.svg?data`)
             };
           }
         );
@@ -99,8 +95,13 @@ export default {
   .v-card-title
     &--tagline
       color #212121
-  .v-image
+  .v-card-img
     background-color rgba(#444, 0.1)
+    > img
+      border-radius 5px
+      filter drop-shadow(0px 0px 5px rgba(#444, 0.5)) brightness(120%)
+      width 80%
+      margin 10% 10% 5%
   .v-devicon-list
     width auto
     >>> .v-devicon-list--icon
