@@ -14,11 +14,6 @@
               <a href="mailto:ben@benfleming.nz" target="_blank" aria-label="Send me an Email."><img alt="email icon" src="~/assets/icons/envelope.svg?data"/></a>
             </div>
           </v-flex>
-          <!-- Foreground Image
-          <v-flex class="header--img-wrapper lg4 hidden-md-and-down">
-            <v-img src="~/assets/images/header--fg-img.png"></v-img>
-          </v-flex>
-          -->
         </v-layout>
       </header>
 
