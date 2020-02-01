@@ -1,22 +1,14 @@
 <template>
   <div class="v-devicon-list">
-    
-    <template
-      v-for="(box, idx) in allBoxes" 
-    >
-      <v-devicon-list-icon
-        :icons="box.icons" 
-        :side="box.side"
-        :size="size"
-        :key="idx" 
-      />
-      <div class="v-devicon-list--divider" :key="idx + .5"></div>
+    <template v-for="(box, idx) in allBoxes">
+      <bf-devicon :icons="box.icons" :side="box.side" :size="size" :key="idx" />
+      <div class="v-devicon-list--divider" :key="idx + 0.5"></div>
     </template>
   </div>
 </template>
 
 <script>
-import DeviconListIcon from "./devicon-list-icon.vue";
+import Devicon from "./icon.vue";
 
 class Box {
   icons = [];
@@ -24,23 +16,23 @@ class Box {
 
   get currentIcon() {
     return this.icons[this.side];
-  } 
+  }
 
-  constructor (icons, side) {
+  constructor(icons, side) {
     this.icons = icons;
     this.side = side;
   }
 }
 
 export default {
-  name: "v-devicon-list",
+  name: "bf-devicon-list",
 
   /**
    * Component Depenencies
    * all the other componets this one relies on
    */
   components: {
-    "v-devicon-list-icon": DeviconListIcon,
+    "bf-devicon": Devicon
   },
 
   /**
@@ -60,14 +52,13 @@ export default {
    */
   data() {
     const icons = Array.from(this.icons);
-    const boxes = Array.from({length: this.boxCount})
-      .map(
-        (_, idx) => new Box(Array.from(icons), idx)
-      );
+    const boxes = Array.from({ length: this.boxCount }).map(
+      (_, idx) => new Box(Array.from(icons), idx)
+    );
 
     return {
       allBoxes: boxes,
-      hiddenIcons: icons.splice(this.boxCount, icons.length), 
+      hiddenIcons: icons.splice(this.boxCount, icons.length),
       lastAnimatedBox: 0,
       lastAnimatedBoxTime: 0
     };
@@ -78,8 +69,7 @@ export default {
    * all component methods
    */
   methods: {
-
-    getRandomInt(min, max, excludes=[]) {
+    getRandomInt(min, max, excludes = []) {
       let idx;
       while (idx == null || excludes.indexOf(idx) != -1) {
         idx = Math.floor(Math.random() * (max - min)) + min;
@@ -89,17 +79,21 @@ export default {
 
     tick(timestamp) {
       if (timestamp - this.lastAnimatedBoxTime >= this.interval) {
-        const boxIndex = this.getRandomInt(0, this.boxCount, [this.lastAnimatedBox]);
-        const nextSide = this.getRandomInt(0, 5, [this.allBoxes[boxIndex].side]);
+        const boxIndex = this.getRandomInt(0, this.boxCount, [
+          this.lastAnimatedBox
+        ]);
+        const nextSide = this.getRandomInt(0, 5, [
+          this.allBoxes[boxIndex].side
+        ]);
 
         // add current side to hidden
-        this.hiddenIcons.push(
-          this.allBoxes[boxIndex].currentIcon
-        );
+        this.hiddenIcons.push(this.allBoxes[boxIndex].currentIcon);
 
         // update the boxs icons
         this.$set(
-          this.allBoxes[boxIndex].icons, nextSide, this.hiddenIcons.shift()
+          this.allBoxes[boxIndex].icons,
+          nextSide,
+          this.hiddenIcons.shift()
         );
 
         // update the boxs current side
@@ -118,12 +112,11 @@ export default {
    * a method to run when the component has been mounted
    */
   mounted() {
-    if (this.interval == -1)
-      return;
+    if (this.interval == -1) return;
 
     requestAnimationFrame(this.tick);
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -139,7 +132,7 @@ export default {
     max-width 85%
   @media screen and (max-width $breakpoint-sm)
     max-width 100%
-    
+
   &--icon
     position relative
 

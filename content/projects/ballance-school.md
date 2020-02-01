@@ -8,9 +8,9 @@ tags:
   - css
   - html
 icons:
-  - Git::git
-  - JavaScript::javascript
-  - NPM::npm
+  - Git
+  - JavaScript
+  - NPM
 ---
 
 Ballance School

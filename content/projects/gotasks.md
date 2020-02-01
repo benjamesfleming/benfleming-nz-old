@@ -9,9 +9,8 @@ tags:
   - svelte
   - sqlite3
 icons:
-  - Git::git
-  - JavaScript::javascript
-  - MySQL::mysql
+  - Git
+  - JavaScript
 ---
 
 Gotasks
