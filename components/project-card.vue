@@ -35,6 +35,7 @@
                 :interval="-1"
                 :icons="icons"
                 size="sm"
+                bgColor="white"
             />
         </v-card-actions>
     </v-card>
@@ -119,7 +120,7 @@ export default {
         }
     }
 
-    .v-devicon-list {
+    .bf-devicon-list {
         width: auto;
 
         >>> .v-devicon-list--icon {

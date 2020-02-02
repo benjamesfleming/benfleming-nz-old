@@ -1,5 +1,5 @@
 <template>
-    <div :class="'bf-devicon bf-devicon--' + (size || 'md')">
+    <div :class="'bf-devicon bf-devicon--' + (size || 'md')" :style="{backgroundColor: bgColor || ''}">
         <div :class="`bf-devicon--cube show-${side}`">
             <div
                 :class="`bf-devicon--cube__face bf-devicon--cube__face--${idx}`"
@@ -26,7 +26,8 @@ export default {
     props: {
         icons: Array,
         side: Number,
-        size: String
+        size: String,
+        bgColor: String
     },
 
     /**
