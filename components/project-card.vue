@@ -57,7 +57,15 @@ export default {
      * Component Props
      * an array of valid prop names
      */
-    props: { value: Object, hideActions: Boolean },
+    props: {
+        value: {
+            type: Object,
+            default: () => ({
+                data: {}
+            })
+        },
+        hideActions: Boolean
+    },
 
     /**
      * Component Computed Values

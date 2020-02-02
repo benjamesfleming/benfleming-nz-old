@@ -44,11 +44,11 @@ export default {
      * an object of valid prop names
      */
     props: {
-        size: String,
-        icons: Array,
-        boxCount: Number,
-        interval: Number,
-        bgColor: String
+        size: { type: String, default: "md" },
+        icons: { type: Array, default: () => [] },
+        boxCount: { type: Number, default: 0 },
+        interval: { type: Number, default: 3000 },
+        bgColor: { type: String, default: "" }
     },
 
     /**

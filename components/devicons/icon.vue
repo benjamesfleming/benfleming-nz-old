@@ -22,10 +22,10 @@ export default {
      * an object of valid prop names
      */
     props: {
-        icons: Array,
-        side: Number,
-        size: String,
-        bgColor: String
+        icons: { type: Array, default: () => [] },
+        side: { type: Number, default: 0 },
+        size: { type: String, default: "" },
+        bgColor: { type: String, default: "" }
     },
 
     /**
