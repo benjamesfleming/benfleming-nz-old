@@ -23,6 +23,8 @@ module.exports = {
         'semi': [2, 'never'],
         'no-console': 'off',
         'vue/max-attributes-per-line': 'off',
+        'vue/html-indent': ['error', 4],
+        'vue/html-self-closing': 0,
         'prettier/prettier': ['error', { 'semi': false, 'tabWidth': 4 }]
     }
 }

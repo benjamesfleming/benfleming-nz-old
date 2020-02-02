@@ -12,7 +12,6 @@
                     Web &amp; Software Developer
                 </h2>
                 <div class="header--content-icons">
-
                     <!-- Github Link -->
                     <a
                         href="https://github.com/benjamesfleming"

@@ -1,20 +1,21 @@
 <template>
-<fragment>
-    <!-- Page Header -->
-    <bf-header />
-    <bf-header-divider />
+    <fragment>
+        <!-- Page Header -->
+        <bf-header />
+        <bf-header-divider />
 
-    <!-- Page Content -->
-    <v-container fluid style="max-width: 1024px;">
+        <!-- Page Content -->
+        <v-container fluid style="max-width: 1024px;">
+            <!-- About Me Section -->
+            <section class="section about-me">
+                <h2 class="section--heading">
+                    About Me
+                </h2>
 
-        <!-- About Me Section -->
-        <section class="section about-me">
-            <h2 class="section--heading">About Me</h2>
-                
-            <bf-devicon-list
-            :interval="3000"
+                <bf-devicon-list
+                    :interval="3000"
                     :box-count="iconCount"
-            :size="iconScale"
+                    :size="iconScale"
                     :icons="[
                         'Amazon Web Services',
                         'C-Sharp',
@@ -23,54 +24,54 @@
                         'JavaScript',
                         'MySQL'
                     ]"
-            />
+                />
 
-            <div class="section--content-wrapper">
-                <p>
-                    Hey there... I'm
-                    <strong>Ben Fleming</strong>, a passionate
-                    <em>Web &amp; Software</em> developer. I have a keen interest in
-                    all things tech. I have become proficient in languages including
-                    <strong>HTML</strong>, <strong>CSS</strong>,
-                    <strong>Javascript</strong>, <strong>VueJS</strong> and others.
-                </p>
-                <p>
-                    I also like to keep an eye on all areas of
-                    <strong> <em>I.T.</em> </strong>, having played around with <strong>AWS</strong>,
-                    <strong>Azure</strong>, <strong>Serverless</strong>, etc.
-                </p>
-            </div>
+                <div class="section--content-wrapper">
+                    <p>
+                        Hey there... I'm
+                        <strong>Ben Fleming</strong>, a passionate
+                        <em>Web &amp; Software</em> developer. I have a keen
+                        interest in all things tech. I have become proficient in
+                        languages including <strong>HTML</strong>,
+                        <strong>CSS</strong>, <strong>Javascript</strong>,
+                        <strong>VueJS</strong> and others.
+                    </p>
+                    <p>
+                        I also like to keep an eye on all areas of
+                        <strong> <em>I.T.</em> </strong>, having played around
+                        with <strong>AWS</strong>, <strong>Azure</strong>,
+                        <strong>Serverless</strong>, etc.
+                    </p>
+                </div>
+            </section>
 
-        </section>
-
-        <!-- My Project Section -->
-        <section class="section my-projects">
-            <h2 class="section--heading">My Projects</h2>
-            <div class="my-projects--grid">
-
-            <bf-project-card
-                v-for="(project, idx) in content.projects"
-                :key="idx"
+            <!-- My Project Section -->
+            <section class="section my-projects">
+                <h2 class="section--heading">
+                    My Projects
+                </h2>
+                <div class="my-projects--grid">
+                    <bf-project-card
+                        v-for="(project, idx) in content.projects"
+                        :key="idx"
                         :value="project"
-            />
+                    />
 
-            <v-card
-                class="my-projects-placeholder hidden-xs-only"
-                elevation="0"
-            >
-                <span class="display-3 font-weight-bold">
-                    MORE COMING SOON
-                </span>
-            </v-card>
-                    
-            </div>
-        </section>
+                    <v-card
+                        class="my-projects-placeholder hidden-xs-only"
+                        elevation="0"
+                    >
+                        <span class="display-3 font-weight-bold">
+                            MORE COMING SOON
+                        </span>
+                    </v-card>
+                </div>
+            </section>
+        </v-container>
 
-    </v-container>
-
-    <!-- Page Footer -->
-    <bf-footer />
-</fragment>
+        <!-- Page Footer -->
+        <bf-footer />
+    </fragment>
 </template>
 
 <script>
@@ -82,17 +83,6 @@ import Footer from "~/components/index/footer.vue"
 import getProjects from "~/content/getProjects.js"
 
 export default {
-    /**
-     * Page Head Options
-     * set all the nessary <head> options
-     */
-    layout: "index",
-    head() {
-        return {
-            titleTemplate: `home %s`
-        }
-    },
-
     /**
      * Page Depenencies
      * all the other componets this page relies on
@@ -141,6 +131,17 @@ export default {
             return this.$breakpoints.name == "xs" ? "md" : "lg"
         }
     },
+
+    /**
+     * Page Head Options
+     * set all the nessary <head> options
+     */
+    layout: "index",
+    head() {
+        return {
+            titleTemplate: `home %s`
+        }
+    }
 }
 </script>
 

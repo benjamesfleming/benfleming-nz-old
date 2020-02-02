@@ -1,17 +1,15 @@
 <template>
-    <div :class="'bf-devicon bf-devicon--' + (size || 'md')" :style="{backgroundColor: bgColor || ''}">
+    <div
+        :class="'bf-devicon bf-devicon--' + (size || 'md')"
+        :style="{ backgroundColor: bgColor || '' }"
+    >
         <div :class="`bf-devicon--cube show-${side}`">
             <div
-                :class="`bf-devicon--cube__face bf-devicon--cube__face--${idx}`"
                 v-for="(name, idx) in icons"
                 :key="idx"
+                :class="`bf-devicon--cube__face bf-devicon--cube__face--${idx}`"
             >
-                <img
-                    :alt="name"
-                    :src="
-                        require(`~/assets/devicons/${formatName(name)}.svg?data`)
-                    "
-                />
+                <img :alt="name" :src="name2img(name)" />
             </div>
         </div>
     </div>
@@ -35,14 +33,16 @@ export default {
      * all the pages methods needed for dynamic content
      */
     methods: {
-        formatName(name) {
+        name2img(name) {
             if (typeof name !== "string")
                 throw new Error("[Devicons] Icon name must be a string.")
 
-            return name
+            let safeName = name
                 .toString()
                 .toLowerCase()
                 .replace(/( |-){1,}/g, "")
+
+            return require(`~/assets/devicons/${safeName}.svg?data`)
         }
     }
 }

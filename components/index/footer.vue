@@ -10,7 +10,9 @@
                 href="https://github.com/benjamesfleming"
                 target="_blank"
                 rel="noopener"
-            >Github</a>
+            >
+                Github
+            </a>
             •
             <a href="mailto:ben@benfleming.nz" target="_blank">Email</a>
         </div>

@@ -31,11 +31,11 @@
             </a>
             <v-spacer />
             <bf-devicon-list
-                :boxCount="icons.length"
+                :box-count="icons.length"
                 :interval="-1"
                 :icons="icons"
                 size="sm"
-                bgColor="white"
+                bg-color="white"
             />
         </v-card-actions>
     </v-card>

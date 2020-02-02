@@ -110,7 +110,7 @@ module.exports = {
         /*
          ** You can extend webpack config here
          */
-        extend(config, ctx) {
+        extend(config) {
             const vueLoader = config.module.rules.find(
                 rule => rule.loader === "vue-loader"
             )

@@ -22,6 +22,8 @@ BreakpointsPlugin.install = Vue => {
                     return name
                 }
             }
+
+            return "xs"
         }
     }
 }

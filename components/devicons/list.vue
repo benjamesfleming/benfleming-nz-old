@@ -1,26 +1,32 @@
 <template>
     <div class="bf-devicon-list">
         <template v-for="(box, idx) in allBoxes">
-            <bf-devicon :icons="box.icons" :side="box.side" :size="size" :bgColor="bgColor" :key="idx" />
+            <bf-devicon
+                :key="idx"
+                :icons="box.icons"
+                :side="box.side"
+                :size="size"
+                :bg-color="bgColor"
+            />
             <div :key="idx + 0.5" class="bf-devicon-list--divider" />
         </template>
     </div>
 </template>
 
 <script>
-import Devicon from "./icon.vue";
+import Devicon from "./icon.vue"
 
 class Box {
-    icons = [];
-    side = 0;
+    icons = []
+    side = 0
 
     get currentIcon() {
-        return this.icons[this.side];
+        return this.icons[this.side]
     }
 
     constructor(icons, side) {
-        this.icons = icons;
-        this.side = side;
+        this.icons = icons
+        this.side = side
     }
 }
 
@@ -50,17 +56,17 @@ export default {
      * an inital data set
      */
     data() {
-        const icons = Array.from(this.icons);
+        const icons = Array.from(this.icons)
         const boxes = Array.from({ length: this.boxCount }).map(
             (_, idx) => new Box(Array.from(icons), idx)
-        );
+        )
 
         return {
             allBoxes: boxes,
             hiddenIcons: icons.splice(this.boxCount, icons.length),
             lastAnimatedBox: 0,
             lastAnimatedBoxTime: 0
-        };
+        }
     },
 
     /**
@@ -68,9 +74,9 @@ export default {
      * a method to run when the component has been mounted
      */
     mounted() {
-        if (this.interval == -1) return;
+        if (this.interval == -1) return
 
-        requestAnimationFrame(this.tick);
+        requestAnimationFrame(this.tick)
     },
 
     /**
@@ -79,42 +85,42 @@ export default {
      */
     methods: {
         getRandomInt(min, max, excludes = []) {
-            let idx;
+            let idx
             while (idx == null || excludes.indexOf(idx) != -1) {
-                idx = Math.floor(Math.random() * (max - min)) + min;
+                idx = Math.floor(Math.random() * (max - min)) + min
             }
-            return idx;
+            return idx
         },
         tick(timestamp) {
             if (timestamp - this.lastAnimatedBoxTime >= this.interval) {
                 const boxIndex = this.getRandomInt(0, this.boxCount, [
-                this.lastAnimatedBox
-                ]);
+                    this.lastAnimatedBox
+                ])
                 const nextSide = this.getRandomInt(0, 5, [
-                this.allBoxes[boxIndex].side
-                ]);
+                    this.allBoxes[boxIndex].side
+                ])
 
                 // add current side to hidden
-                this.hiddenIcons.push(this.allBoxes[boxIndex].currentIcon);
+                this.hiddenIcons.push(this.allBoxes[boxIndex].currentIcon)
 
                 // update the boxs icons
                 this.$set(
-                this.allBoxes[boxIndex].icons,
-                nextSide,
-                this.hiddenIcons.shift()
-                );
+                    this.allBoxes[boxIndex].icons,
+                    nextSide,
+                    this.hiddenIcons.shift()
+                )
 
                 // update the boxs current side
-                this.allBoxes[boxIndex].side = nextSide;
+                this.allBoxes[boxIndex].side = nextSide
 
-                this.lastAnimatedBox = boxIndex;
-                this.lastAnimatedBoxTime = timestamp;
+                this.lastAnimatedBox = boxIndex
+                this.lastAnimatedBoxTime = timestamp
             }
 
-            requestAnimationFrame(this.tick);
+            requestAnimationFrame(this.tick)
         }
     }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
