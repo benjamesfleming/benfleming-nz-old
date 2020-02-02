@@ -1,18 +1,14 @@
 <template>
     <v-app class="app">
         <main v-reverse-order>
-
             <!-- Page Content -->
-            <nuxt/>
-
+            <nuxt />
         </main>
     </v-app>
 </template>
 
 <script>
-export default {
-    
-};
+export default {}
 </script>
 
 <style lang="stylus" scoped>

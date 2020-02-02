@@ -1,9 +1,8 @@
 <template>
 <fragment>
-
     <!-- Page Header -->
-    <bf-header/>
-    <bf-header-divider/>
+    <bf-header />
+    <bf-header-divider />
 
     <!-- Page Content -->
     <v-container fluid style="max-width: 1024px;">
@@ -11,12 +10,21 @@
         <!-- About Me Section -->
         <section class="section about-me">
             <h2 class="section--heading">About Me</h2>
+                
             <bf-devicon-list
             :interval="3000"
-            :boxCount="iconCount"
+                    :box-count="iconCount"
             :size="iconScale"
-            :icons="['Amazon Web Services', 'C-Sharp', 'Git', 'NodeJS', 'JavaScript', 'MySQL']"
+                    :icons="[
+                        'Amazon Web Services',
+                        'C-Sharp',
+                        'Git',
+                        'NodeJS',
+                        'JavaScript',
+                        'MySQL'
+                    ]"
             />
+
             <div class="section--content-wrapper">
                 <p>
                     Hey there... I'm
@@ -28,47 +36,50 @@
                 </p>
                 <p>
                     I also like to keep an eye on all areas of
-                    <strong>
-                    <em>I.T.</em> </strong
-                    >, having played around with <strong>AWS</strong>,
+                    <strong> <em>I.T.</em> </strong>, having played around with <strong>AWS</strong>,
                     <strong>Azure</strong>, <strong>Serverless</strong>, etc.
                 </p>
             </div>
+
         </section>
 
         <!-- My Project Section -->
         <section class="section my-projects">
             <h2 class="section--heading">My Projects</h2>
             <div class="my-projects--grid">
+
             <bf-project-card
                 v-for="(project, idx) in content.projects"
-                :value="project"
                 :key="idx"
+                        :value="project"
             />
+
             <v-card
                 class="my-projects-placeholder hidden-xs-only"
                 elevation="0"
             >
-                <span class="display-3 font-weight-bold">MORE COMING SOON</span>
+                <span class="display-3 font-weight-bold">
+                    MORE COMING SOON
+                </span>
             </v-card>
+                    
             </div>
         </section>
 
     </v-container>
 
     <!-- Page Footer -->
-    <bf-footer/>
-
+    <bf-footer />
 </fragment>
 </template>
 
 <script>
-import DeviconList from "~/components/devicons/list.vue";
-import ProjectCard from "~/components/project-card.vue";
-import Header from "~/components/index/header.vue";
-import HeaderDivider from "~/components/index/header-divider.vue";
-import Footer from "~/components/index/footer.vue";
-import getProjects from "~/content/getProjects.js";
+import DeviconList from "~/components/devicons/list.vue"
+import ProjectCard from "~/components/project-card.vue"
+import Header from "~/components/index/header.vue"
+import HeaderDivider from "~/components/index/header-divider.vue"
+import Footer from "~/components/index/footer.vue"
+import getProjects from "~/content/getProjects.js"
 
 export default {
     /**
@@ -79,19 +90,7 @@ export default {
     head() {
         return {
             titleTemplate: `home %s`
-        };
-    },
-
-    /**
-     * Async Data (NUXT)
-     * get the api data while on the server, and render the inital html
-     */
-    async asyncData() {
-        const projects = await getProjects();
-
-        return {
-            content: { projects }
-        };
+        }
     },
 
     /**
@@ -107,6 +106,18 @@ export default {
     },
 
     /**
+     * Async Data (NUXT)
+     * get the api data while on the server, and render the inital html
+     */
+    async asyncData() {
+        const projects = await getProjects()
+
+        return {
+            content: { projects }
+        }
+    },
+
+    /**
      * Page Data
      * inital page starting data
      */
@@ -115,7 +126,7 @@ export default {
             content: {
                 projects: []
             }
-        };
+        }
     },
 
     /**
@@ -124,17 +135,13 @@ export default {
      */
     computed: {
         iconCount() {
-            return (
-                this.$breakpoints.name == "xs" ? 4 : 5
-            )
+            return this.$breakpoints.name == "xs" ? 4 : 5
         },
         iconScale() {
-            return (
-                this.$breakpoints.name == "xs" ? "md" : "lg"
-            )
+            return this.$breakpoints.name == "xs" ? "md" : "lg"
         }
     },
-};
+}
 </script>
 
 <style lang="stylus" scoped>

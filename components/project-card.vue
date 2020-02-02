@@ -1,6 +1,5 @@
 <template>
     <v-card class="project-card">
-
         <!-- Card Image -->
         <div class="v-card-img">
             <img
@@ -30,7 +29,7 @@
             >
                 <v-icon v-ripple>open_in_new</v-icon>
             </a>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <bf-devicon-list
                 :boxCount="icons.length"
                 :interval="-1"
@@ -38,12 +37,11 @@
                 size="sm"
             />
         </v-card-actions>
-
     </v-card>
 </template>
 
 <script>
-import DeviconList from "~/components/devicons/list.vue";
+import DeviconList from "~/components/devicons/list.vue"
 
 export default {
     /**
@@ -65,23 +63,23 @@ export default {
      * all the dynamic values needed for the component, based off props
      */
     computed: {
-        image() { 
-            return this.get("image", ""); 
+        image() {
+            return this.get("image", "")
         },
-        icons() { 
-            return this.get("icons", []); 
+        icons() {
+            return this.get("icons", [])
         },
-        title() { 
-            return this.get("title", "Untitled"); 
+        title() {
+            return this.get("title", "Untitled")
         },
-        tagline() { 
-            return this.get("tagline", "No Tagline Defined!"); 
+        tagline() {
+            return this.get("tagline", "No Tagline Defined!")
         },
-        slug() { 
-            return this.get("slug", false); 
+        slug() {
+            return this.get("slug", false)
         },
-        link() { 
-            return this.get("link", false); 
+        link() {
+            return this.get("link", false)
         }
     },
 
@@ -92,11 +90,12 @@ export default {
     methods: {
         get(key, fallback) {
             return (
-                (this.value && this.value.data && this.value.data[key]) || fallback
-            );
+                (this.value && this.value.data && this.value.data[key]) ||
+                fallback
+            )
         }
     }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

@@ -3,10 +3,15 @@
         <span>&copy; Ben Fleming 2019-{{ fullYear }}.&nbsp;</span>
         <span>All Rights Reserved</span>
 
-        <v-spacer></v-spacer>
-        
+        <v-spacer />
+
         <div class="footer--links">
-            <a href="https://github.com/benjamesfleming" target="_blank" rel="noopener">Github</a> •
+            <a
+                href="https://github.com/benjamesfleming"
+                target="_blank"
+                rel="noopener"
+            >Github</a>
+            •
             <a href="mailto:ben@benfleming.nz" target="_blank">Email</a>
         </div>
     </footer>
@@ -14,17 +19,16 @@
 
 <script>
 export default {
-
     /**
      * Page Computed Date
      * dynamic data to render on the page
      */
     computed: {
         fullYear() {
-            return new Date().getFullYear();
-        },
-    },
-};
+            return new Date().getFullYear()
+        }
+    }
+}
 </script>
 
 <style lang="stylus" scoped>

@@ -1,27 +1,16 @@
 <template>
-    <div class="header--divider" :style="`--content-opacity: ${scrollTop}`"/>
+    <div class="header--divider" :style="`--content-opacity: ${scrollTop}`" />
 </template>
 
 <script>
 export default {
-
     /**
      * Component Data
      * inital page starting data
      */
     data() {
         return {
-            scrollTop: 0,
-        };
-    },
-
-    /**
-     * Component Methods
-     * all the pages methods needed for dynamic content
-     */
-    methods: {
-        handleScroll() {
-            this.scrollTop = (80 - window.scrollY) / 80;
+            scrollTop: 0
         }
     },
 
@@ -30,10 +19,10 @@ export default {
      * this method runs when the page is created
      */
     created() {
-        if (!process.client) return;
+        if (!process.client) return
 
-        this.handleScroll();
-        window.addEventListener("scroll", this.handleScroll);
+        this.handleScroll()
+        window.addEventListener("scroll", this.handleScroll)
     },
 
     /**
@@ -41,9 +30,19 @@ export default {
      * this method cleans up when the page is destoryed
      */
     destroyed() {
-        if (!process.client) return;
+        if (!process.client) return
 
-        window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("scroll", this.handleScroll)
+    },
+
+    /**
+     * Component Methods
+     * all the pages methods needed for dynamic content
+     */
+    methods: {
+        handleScroll() {
+            this.scrollTop = (80 - window.scrollY) / 80
+        }
     }
 }
 </script>

@@ -1,30 +1,42 @@
 <template>
-    <header class="header" v-angle="headerAngle">
+    <header v-angle="headerAngle" class="header">
         <v-layout class="header--content-wrapper">
-            <img :srcset="require('~/assets/images/header--bg-img.jpg').srcSet" />
+            <img
+                :srcset="require('~/assets/images/header--bg-img.jpg').srcSet"
+            />
             <v-flex class="header--content sm12 lg12 py-5">
-                <h2 class="header--content-title">I'm Ben Fleming...</h2>
+                <h2 class="header--content-title">
+                    I'm Ben Fleming...
+                </h2>
                 <h2 class="header--content-tagline">
                     Web &amp; Software Developer
                 </h2>
                 <div class="header--content-icons">
 
+                    <!-- Github Link -->
                     <a
                         href="https://github.com/benjamesfleming"
                         target="_blank"
                         rel="noopener"
                         aria-label="Have a browse of my GitHub."
                     >
-                        <img alt="github icon" src="~/assets/icons/github.svg?data" />
+                        <img
+                            alt="github icon"
+                            src="~/assets/icons/github.svg?data"
+                        />
                     </a>
+
+                    <!-- Email Link -->
                     <a
                         href="mailto:ben@benfleming.nz"
                         target="_blank"
                         aria-label="Send me an Email."
                     >
-                        <img alt="email icon" src="~/assets/icons/envelope.svg?data" />
+                        <img
+                            alt="email icon"
+                            src="~/assets/icons/envelope.svg?data"
+                        />
                     </a>
-                
                 </div>
             </v-flex>
         </v-layout>
@@ -39,8 +51,8 @@ export default {
      */
     data() {
         return {
-            scrollTop: 0,
-        };
+            scrollTop: 0
+        }
     },
 
     /**
@@ -49,19 +61,7 @@ export default {
      */
     computed: {
         headerAngle() {
-            return (
-                this.$breakpoints.name == "xs" ? 5 : 3
-            )
-        },
-    },
-
-    /**
-     * Page Methods
-     * all the pages methods needed for dynamic content
-     */
-    methods: {
-        handleScroll() {
-            this.scrollTop = (80 - window.scrollY) / 80;
+            return this.$breakpoints.name == "xs" ? 5 : 3
         }
     },
 
@@ -70,10 +70,10 @@ export default {
      * this method runs when the page is created
      */
     created() {
-        if (!process.client) return;
+        if (!process.client) return
 
-        this.handleScroll();
-        window.addEventListener("scroll", this.handleScroll);
+        this.handleScroll()
+        window.addEventListener("scroll", this.handleScroll)
     },
 
     /**
@@ -81,9 +81,19 @@ export default {
      * this method cleans up when the page is destoryed
      */
     destroyed() {
-        if (!process.client) return;
+        if (!process.client) return
 
-        window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("scroll", this.handleScroll)
+    },
+
+    /**
+     * Page Methods
+     * all the pages methods needed for dynamic content
+     */
+    methods: {
+        handleScroll() {
+            this.scrollTop = (80 - window.scrollY) / 80
+        }
     }
 }
 </script>

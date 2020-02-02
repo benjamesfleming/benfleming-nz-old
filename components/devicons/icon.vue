@@ -1,23 +1,24 @@
 <template>
-  <div :class="'bf-devicon bf-devicon--' + (size || 'md')">
-    <div :class="`bf-devicon--cube show-${side}`">
-      <div
-        :class="
-          `bf-devicon--cube__face bf-devicon--cube__face--${idx}`
-        "
-        v-for="(name, idx) in icons"
-        :key="idx"
-      >
-        <img :alt="name" :src="require(`~/assets/devicons/${formatName(name)}.svg?data`)" />
-      </div>
+    <div :class="'bf-devicon bf-devicon--' + (size || 'md')">
+        <div :class="`bf-devicon--cube show-${side}`">
+            <div
+                :class="`bf-devicon--cube__face bf-devicon--cube__face--${idx}`"
+                v-for="(name, idx) in icons"
+                :key="idx"
+            >
+                <img
+                    :alt="name"
+                    :src="
+                        require(`~/assets/devicons/${formatName(name)}.svg?data`)
+                    "
+                />
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-    name: "bf-devicon",
-
     /**
      * Component Props
      * an object of valid prop names
@@ -34,13 +35,16 @@ export default {
      */
     methods: {
         formatName(name) {
-            if (typeof name !== "string") 
-                throw new Error("[Devicons] Icon name must be a string.");
+            if (typeof name !== "string")
+                throw new Error("[Devicons] Icon name must be a string.")
 
-            return name.toString().toLowerCase().replace(/( |-){1,}/g, "");
+            return name
+                .toString()
+                .toLowerCase()
+                .replace(/( |-){1,}/g, "")
         }
-    },
-};
+    }
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -54,16 +58,16 @@ bf-devicon($size, $name) {
         height: $size;
         perspective: $size * 2;
         box-sizing: content-box;
-        background: white;
+        background: $bg-color;
 
         .bf-devicon--cube {
-        width: $size;
-        height: $size;
-        position: relative;
-        background: inherit;
-        transform-style: preserve-3d;
-        transform: translateZ($size / 2 * -1);
-        transition: transform 1.5s ease-in-out;
+            width: $size;
+            height: $size;
+            position: relative;
+            background: inherit;
+            transform-style: preserve-3d;
+            transform: translateZ($size / 2 * -1);
+            transition: transform 1.5s ease-in-out;
         }
 
         .bf-devicon--cube.show-0 { transform: translateZ($size / 2 * -1) rotateY(   0deg); }
@@ -74,15 +78,15 @@ bf-devicon($size, $name) {
         .bf-devicon--cube.show-5 { transform: translateZ($size / 2 * -1) rotateX(  90deg); }
 
         .bf-devicon--cube__face {
-        position: absolute;
-        width: $size;
-        height: $size;
-        background: inherit;
-        padding: 5px;
+            position: absolute;
+            width: $size;
+            height: $size;
+            background: inherit;
+            padding: 5px;
         }
 
         .bf-devicon--cube__face img {
-        filter: drop-shadow(1px 1px 2px #aaaaaa);
+            filter: drop-shadow(1px 1px 2px #aaaaaa);
         }
 
         .bf-devicon--cube__face--0 { transform: rotateY(  0deg) translateZ($size / 2); }
