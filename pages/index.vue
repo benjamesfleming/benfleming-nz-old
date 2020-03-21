@@ -18,7 +18,7 @@
                     :size="iconScale"
                     :icons="[
                         'Amazon Web Services',
-                        'C-Sharp',
+                        'Nginx',
                         'Git',
                         'NodeJS',
                         'JavaScript',
@@ -30,17 +30,29 @@
                     <p>
                         Hey there... I'm
                         <strong>Ben Fleming</strong>, a passionate
-                        <em>Web &amp; Software</em> developer. I have a keen
-                        interest in all things tech. I have become proficient in
+                        <em>Technology Enthusiast</em>. I have a keen
+                        interest in all things tech. I enjoy programming, and have become proficient in
                         languages including <strong>HTML</strong>,
                         <strong>CSS</strong>, <strong>Javascript</strong>,
-                        <strong>VueJS</strong> and others.
+                        <strong>NodeJS</strong>, <strong>YAML</strong> and others.
                     </p>
                     <p>
-                        I also like to keep an eye on all areas of
-                        <strong> <em>I.T.</em> </strong>, having played around
-                        with <strong>AWS</strong>, <strong>Azure</strong>,
-                        <strong>Serverless</strong>, etc.
+                        I also like to keep an eye on other areas of
+                        <strong> <em>I.T.</em> </strong>, having played with 
+                        <strong>AWS</strong>, <strong>Azure</strong>,
+                        <strong>Serverless Functions</strong>, <strong>Network Design</strong>,
+                        <strong>Systems Administration</strong>, <strong>Ansible</strong>, etc.
+                    </p>
+                    <p>
+                        View the projects below, or visit my 
+                        <a
+                            href="https://github.com/benjamesfleming"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="My GitHub."
+                        >
+                            <strong>GitHub</strong>
+                        </a>.
                     </p>
                 </div>
             </section>

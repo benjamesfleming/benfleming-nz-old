@@ -9,7 +9,7 @@
                     I'm Ben Fleming...
                 </h2>
                 <h2 class="header--content-tagline">
-                    Web &amp; Software Developer
+                    Technology Enthusiast
                 </h2>
                 <div class="header--content-icons">
                     <!-- Github Link -->
