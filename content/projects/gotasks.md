@@ -1,7 +1,7 @@
 ---
 title: Gotasks
 tagline: A simple self hosted task / todo list
-link: https://gotasks.demoapp.nz
+link: https://github.com/benjamesfleming/gotasks
 slug: gotasks
 type: standalone
 tags:
