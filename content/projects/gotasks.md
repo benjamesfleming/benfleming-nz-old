@@ -11,6 +11,7 @@ tags:
 icons:
   - Git
   - JavaScript
+  - Go
 ---
 
 Gotasks
