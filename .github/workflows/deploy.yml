@@ -1,4 +1,4 @@
-name: Deploy to S3
+name: Deploy on different branch
 
 on: 
   push:
@@ -29,6 +29,11 @@ jobs:
           npm run generate --if-present
           ls -la
 
-      - name: deploy static site to S3 bucket
-        run: >-
-          aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+      - name: push static site to build branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build
+          FOLDER: dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Build: ({sha}) {msg}"
