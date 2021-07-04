@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{288:function(t,e,n){"use strict";n.r(e),e.default={content:"\nGotasks\n",data:{title:"Gotasks",tagline:"A simple self hosted task / todo list",link:"https://github.com/benjamesfleming/gotasks",slug:"gotasks",type:"standalone",tags:["golang","svelte","sqlite3"],icons:["Git","JavaScript","Go"]},isEmpty:!1,excerpt:""}}}]);
