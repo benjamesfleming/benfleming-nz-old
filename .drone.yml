@@ -4,6 +4,11 @@ type: kubernetes
 name: build
 
 steps:
+- name: build
+  image: node
+  commands:
+    - npm install
+    - npm run generate
 - name: publish
   image: plugins/docker
   settings:
