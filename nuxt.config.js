@@ -4,7 +4,8 @@ const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin")
 const { VuetifyProgressiveModule } = require("vuetify-loader")
 
 module.exports = {
-    mode: "universal",
+    ssr: true,
+    target: "static",
 
     /*
      ** Headers of the page
@@ -112,7 +113,7 @@ module.exports = {
          */
         extend(config) {
             const vueLoader = config.module.rules.find(
-                rule => rule.loader === "vue-loader"
+                rule => rule.test.test(".vue")
             )
             const imgLoader = config.module.rules.find(
                 rule =>
