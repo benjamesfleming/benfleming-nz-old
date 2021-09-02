@@ -1,0 +1,11 @@
+---
+kind: pipeline
+type: kubernetes
+name: build
+
+steps:
+- name: publish
+  image: plugins/docker
+  settings:
+    repo: registry.k3s-cluster.benfleming.nz/_/benfleming.nz
+    auto_tag: true
