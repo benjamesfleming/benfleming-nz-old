@@ -7,9 +7,9 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    registry: registry.k3s-cluster.benfleming.nz
-    repo: benfleming.nz
-    cache_from: benfleming.nz:latest
+    registry: index.benfleming.nz
+    repo: index.benfleming.nz/benfleming.nz
+    cache_from: index.benfleming.nz/benfleming.nz:latest
     tags: latest
     username:
       from_secret: docker_username
