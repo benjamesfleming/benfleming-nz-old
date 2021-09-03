@@ -4,13 +4,9 @@ type: kubernetes
 name: build
 
 steps:
-- name: build
-  image: node
-  commands:
-    - npm install
-    - npm run generate
 - name: publish
   image: plugins/docker
   settings:
     repo: registry.k3s-cluster.benfleming.nz/_/benfleming.nz
-    auto_tag: true
+    cache_from: registry.k3s-cluster.benfleming.nz/_/benfleming.nz:latest
+    tags: latest

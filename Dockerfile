@@ -1,29 +1,35 @@
-FROM alpine:3.13.2 AS thttpd
+FROM node:alpine AS builder
 
-ARG THTTPD_VERSION=2.29
+RUN apk --update --no-cache \
+  add  \
+  automake \
+  git \
+  alpine-sdk  \
+  nasm  \
+  autoconf  \
+  build-base \
+  zlib \
+  zlib-dev \
+  libpng \
+  libpng-dev\
+  libwebp \
+  libwebp-dev \
+  libjpeg-turbo \
+  libjpeg-turbo-dev
 
-RUN apk add gcc musl-dev make
+WORKDIR /app
 
-RUN wget http://www.acme.com/software/thttpd/thttpd-${THTTPD_VERSION}.tar.gz \
-  && tar xzf thttpd-${THTTPD_VERSION}.tar.gz \
-  && mv /thttpd-${THTTPD_VERSION} /thttpd
+COPY package.json .
+COPY package-lock.json .
 
-RUN cd /thttpd \
-  && ./configure \
-  && make CCOPT='-O2 -s -static' thttpd
+RUN npm install
 
-RUN adduser -D static
+COPY . .
 
-FROM scratch
+RUN npm run generate
 
-EXPOSE 3000
+FROM caddy:2
 
-COPY --from=thttpd /etc/passwd /etc/passwd
-COPY --from=thttpd /thttpd/thttpd /
+WORKDIR /usr/share/caddy
 
-USER static
-WORKDIR /home/static
-
-COPY ./dist .
-
-CMD ["/thttpd", "-D", "-h", "0.0.0.0", "-p", "3000", "-d", "/home/static", "-u", "static", "-l", "-", "-M", "60"]
+COPY --from=builder /app/dist .
