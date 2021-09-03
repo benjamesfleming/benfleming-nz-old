@@ -10,3 +10,7 @@ steps:
     repo: registry.k3s-cluster.benfleming.nz/benjamesfleming/benfleming.nz
     cache_from: registry.k3s-cluster.benfleming.nz/benjamesfleming/benfleming.nz:latest
     tags: latest
+    username:
+      from_secret: registry_username
+    password:
+      from_secret: registry_password
